@@ -66,6 +66,7 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
+        $event = Event::findOrFail($id);
         return view('admin.events.edit', compact('event'));
     }
 
@@ -94,6 +95,7 @@ class EventController extends Controller
 
         $data['is_published'] = $request->has('is_published');
 
+        $event = Event::findOrFail($id);
         $event->update($data);
 
         return redirect()->route('admin.events.index')->with('success', 'Evento atualizado!');

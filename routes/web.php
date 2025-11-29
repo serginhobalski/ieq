@@ -18,6 +18,7 @@ Auth::routes();
 // Rota dos Membros (Padrão do Laravel UI)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/chat', [ChatMessageController::class, 'index'])->name('chat');
+Route::get('/calendar/feed', [CalendarController::class, 'events'])->name('calendar.feed');
 
 
 // --- ÁREA ADMINISTRATIVA (Protegida) ---
@@ -29,6 +30,9 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 
     // Dashboard principal do Admin
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Gestão de Membros
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['create', 'store', 'show']);
     
     // Aqui entrarão as rotas dos seus módulos depois
     Route::resource('events', EventController::class);

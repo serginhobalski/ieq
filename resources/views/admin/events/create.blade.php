@@ -11,10 +11,10 @@
 
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="card shadow-sm">
         <div class="card-header bg-white">
-            <h4 class="mb-0">Novo Evento</h4>
+            <h4 class="mb-0 text-info">Novo Evento</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">

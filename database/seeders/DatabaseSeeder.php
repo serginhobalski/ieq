@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'is_admin' => true, // O pulo do gato
         ]);
+
+        $this->call(DepartmentSeeder::class);
     }
 }

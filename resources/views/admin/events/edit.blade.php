@@ -11,10 +11,10 @@
 
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="card shadow-sm">
         <div class="card-header bg-white">
-            <h4 class="mb-0">Editar Evento: {{ $event->title }}</h4>
+            <h4 class="mb-0  text-info">Editar Evento: {{ $event->title }}</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.events.update', $event) }}" method="POST" enctype="multipart/form-data">

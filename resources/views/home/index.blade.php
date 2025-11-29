@@ -340,17 +340,26 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
+                        <h1 class="text-white"><strong>Nossa <em>Missão</em> </strong> </h1>
                         <p class="fs-6 fs-sm-5 text-white">
-                        <h2 class="text-white"><strong>Nossa <em>Missão</em> </strong> </h2>
-                        <strong class="text-white">ADORAÇÃO</strong> - <em>Amar a Deus</em><br>
-                        <strong class="text-white">SERVIÇO</strong> - <em>Amar ao próximo</em><br>
-                        <strong class="text-white">EVANGELIZAÇÃO</strong> - <em>Alcançar o perdido</em><br>
-                        <strong class="text-white">COMUNHÃO</strong> - <em>Conectar a Cristo e </em><br>
-                        <strong class="text-white">DISCIPULADO</strong> - <em>Formar seguidores de Cristo</em><br>
+                            <strong class="text-white">ADORAÇÃO</strong> - <em>Amar a Deus</em><br>
                         </p>
-                        {{-- <button
-                            class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-9 py-2"
-                            type="button">Start your webapp</button> --}}
+                        <p class="fs-6 fs-sm-5 text-white">
+                            <strong class="text-white">SERVIÇO</strong> - <em>Amar ao próximo</em><br>
+                        </p>
+                        <p class="fs-6 fs-sm-5 text-white">
+                            <strong class="text-white">EVANGELIZAÇÃO</strong> - <em>Alcançar o perdido</em><br>
+                        </p>
+                        <p class="fs-6 fs-sm-5 text-white">
+                            <strong class="text-white">COMUNHÃO</strong> - <em>Conectar a Cristo e </em><br>
+                        </p>
+                        <p class="fs-6 fs-sm-5 text-white">
+                            <strong class="text-white">DISCIPULADO</strong> - <em>Formar seguidores de Cristo</em><br>
+                        </p>
+                        {{-- <p class="fs-6 fs-sm-5 text-white">
+                            O mandamento de Jesus Cristo é levar o evangelho e fazer discípulos em todas as nações (Marcos, 16:15; Mateus, 28:19). Por isso, nossa greja se dedica à causa do evangelismo interdenominacional e mundial, o que expressa o seu espírito e foco.                   
+                        </p> --}}
+
                     </div>
                 </div>
             </div><!-- end of .container-->
@@ -485,6 +494,11 @@
                             </div>
                         </div>
                     </div>
+                    <p class="mt-4">
+                        As quatro doutrinas centrais da Igreja são: Doutrina da salvação, Doutrina do batismo com o Espírito Santo, Doutrina da cura divina, Doutrina da segunda vinda. Cremos que Jesus tem poder pra Salvar, Batizar com fogo por intermédio do Espírito Santo, Curar e que em breve Voltará. <br>
+
+                        Baseada inteiramente na Bíblia, mais especificamente na passagem através da visão de Ezequiel (Ezequiel1). Somos uma das igrejas pentecostais pioneiras do avivamento carismático do início do século XX.
+                    </p>
                 </div>
             </div><!-- end of .container-->
         </section>

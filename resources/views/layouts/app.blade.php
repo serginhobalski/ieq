@@ -407,17 +407,9 @@
                                 data-top-nav-dropdowns="data-top-nav-dropdowns">
                                 <!-- =======-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" >Painel</a>
-                                    <div
-                                        class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                        aria-labelledby="dashboards">
-                                        <div
-                                            class="bg-white dark__bg-1000 rounded-3 py-2">
-                                            <a class="dropdown-item link-600 fw-medium" href="#">Meu painel</a>
-                                        </div>
-                                    </div>
+                                    <a class="nav-link" href="{{route('home')}}" >Painel</a>                                    
                                 </li>
-                                
+                                <!--  -->
                                 <li class="nav-item dropdown"><a
                                         class="nav-link dropdown-toggle"
                                         href="#" role="button"
@@ -474,8 +466,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                
-                                
                             </ul>
                         </div>
                     </div>
@@ -500,7 +490,7 @@
                             </button>
                         </div>
                         <!--  branding =======-->
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="{{url('/')}}">
                             <div class="d-flex align-items-center py-3">
                                 <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
                             </div>
@@ -513,7 +503,7 @@
                                 id="navbarVerticalNav">
                                 <!-- navegação PRINCIPAL =======-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('home')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon">
                                                 <span class="fas fa-house-user"></span>
