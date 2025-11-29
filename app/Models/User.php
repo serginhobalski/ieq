@@ -65,4 +65,10 @@ class User extends Authenticatable
         // Retorna uma imagem padrão baseada nas iniciais do nome (serviço ui-avatars.com)
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
+
+
+    // Em User.php:
+    public function departments() {
+        return $this->belongsToMany(Department::class, 'department_user');
+    }
 }

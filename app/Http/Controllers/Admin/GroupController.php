@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Group;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -12,7 +14,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        // Traz os grupos com o nome do líder (Eager Loading para performance)
+        $groups = Group::with('leader')->get();
+        return view('admin.groups.index', compact('groups'));
     }
 
     /**
@@ -20,7 +24,12 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        // Busca apenas usuários aptos a liderar para o <select>
+        // Ajuste conforme os 'roles' que você definiu no passo anterior
+        // $leaders = User::whereIn('role', ['leader', 'pastor', 'admin'])->get();
+        $leaders = User::all();
+        
+        return view('admin.groups.create', compact('leaders'));
     }
 
     /**
@@ -28,7 +37,17 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'leader_id' => 'required|exists:users,id',
+            'address' => 'nullable|string',
+            'meeting_day' => 'required|string', // Ex: 'Segunda-feira'
+            'meeting_time' => 'required', // Formato H:i
+        ]);
+
+        Group::create($data);
+
+        return redirect()->route('admin.groups.index')->with('success', 'Grupo de comunhão criado!');
     }
 
     /**
@@ -44,7 +63,10 @@ class GroupController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // $leaders = User::whereIn('role', ['leader', 'pastor', 'admin'])->get();
+        $leaders = User::all();
+        $group = Group::findOrFail($id);
+        return view('admin.groups.edit', compact('group', 'leaders'));
     }
 
     /**
@@ -52,7 +74,18 @@ class GroupController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'leader_id' => 'required|exists:users,id',
+            'address' => 'nullable|string',
+            'meeting_day' => 'required|string',
+            'meeting_time' => 'required',
+        ]);
+
+        $group = Group::findOrFail($id);
+        $group->update($data);
+
+        return redirect()->route('admin.groups.index')->with('success', 'Grupo atualizado com sucesso!');
     }
 
     /**
@@ -60,6 +93,8 @@ class GroupController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $group = Group::findOrFail($id);
+        $group->delete();
+        return redirect()->route('admin.groups.index')->with('success', 'Grupo removido.');
     }
 }

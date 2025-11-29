@@ -17,8 +17,12 @@
                 <center>
                     <a href="{{ route('admin.events.index') }}" class="btn btn-info"><i
                             class="fas fa-calendar-alt"></i>Gerenciar Eventos</a>
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-info"><i class="fas fa-users"></i>Gerenciar
-                        Membros</a>
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-info">
+                        <i class="fas fa-users"></i>Gerenciar Membros
+                    </a>
+                    <a href="{{ route('admin.groups.index') }}" class="btn btn-info">
+                        <i class="fas fa-share-alt"></i>Gerenciar Grupos
+                    </a>
                 </center>
             </div>
         </div>

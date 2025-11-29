@@ -18,7 +18,7 @@ Auth::routes();
 // Rota dos Membros (Padrão do Laravel UI)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/chat', [ChatMessageController::class, 'index'])->name('chat');
-Route::get('/calendar/feed', [CalendarController::class, 'events'])->name('calendar.feed');
+Route::get('/calendar/feed', [HomeController::class, 'events'])->name('calendar.feed');
 
 
 // --- ÁREA ADMINISTRATIVA (Protegida) ---
@@ -31,11 +31,35 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     // Dashboard principal do Admin
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Gestão de Grupos de Comunhão
+    Route::resource('groups', \App\Http\Controllers\Admin\GroupController::class);
+
     // Gestão de Membros
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['create', 'store', 'show']);
     
     // Aqui entrarão as rotas dos seus módulos depois
     Route::resource('events', EventController::class);
     Route::resource('members', MemberController::class);
+
+    // Departamentos (Básico)
+    Route::resource('departments', \App\Http\Controllers\Admin\DepartmentController::class);
+
+    // Gestão de Membros do Departamento (Rotas customizadas)
+    Route::get('departments/{department}/members', 
+        [\App\Http\Controllers\Admin\DepartmentController::class, 'members'])->name('departments.members');
+    Route::post('departments/{department}/members', 
+        [\App\Http\Controllers\Admin\DepartmentController::class, 'addMember'])->name('departments.addMember');
+    Route::delete('departments/{department}/members/{user}',
+        [\App\Http\Controllers\Admin\DepartmentController::class, 'removeMember'])->name('departments.removeMember');
+
+    // Escalas
+    Route::get('scales', [\App\Http\Controllers\Admin\ScaleController::class, 'index'])
+        ->name('scales.index');
+    Route::get('scales/{event}', [\App\Http\Controllers\Admin\ScaleController::class, 'edit'])
+        ->name('scales.edit');
+    Route::post('scales/{event}', [\App\Http\Controllers\Admin\ScaleController::class, 'store'])
+        ->name('scales.store');
+    Route::delete('scales/{id}', [\App\Http\Controllers\Admin\ScaleController::class, 'destroy'])
+        ->name('scales.destroy');
     
 });
