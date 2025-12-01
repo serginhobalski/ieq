@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    protected $fillable = ['name', 'description', 'leader_id'];
+    protected $fillable = ['name', 'slug', 'description', 'leader_id'];
 
     // Quem é o líder geral
     public function leader()

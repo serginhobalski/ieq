@@ -50,13 +50,16 @@
                                 </td>
                                 <td class="text-end">
                                     <a href="{{ route('admin.events.edit', $event) }}"
-                                        class="btn btn-sm btn-outline-secondary">Editar</a>
+                                        class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Editar</a>
                                     <form action="{{ route('admin.events.destroy', $event) }}" method="POST"
                                         class="d-inline" onsubmit="return confirm('Tem certeza?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-danger">Excluir</button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
                                     </form>
+                                    <a href="{{route('admin.scales.edit', $event)}}" class="btn btn-sm btn-success">
+                                        <i class="fas fa-clipboard-list"></i> Escalas
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

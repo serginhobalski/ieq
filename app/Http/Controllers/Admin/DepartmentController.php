@@ -11,8 +11,15 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        $departments = Department::withCount('members')->get();
-        return view('admin.departments.index', compact('departments'));
+        // Carregamos os departamentos
+        $departments = Department::with('leader')->with('members')->get();
+        
+        // Carregamos TODOS os usuários para popular o select da modal
+        // Idealmente, filtramos apenas quem ainda não é membro no front ou backend, 
+        // mas para simplificar aqui, vamos mandar todos.
+        $users = User::orderBy('name')->get(); 
+
+        return view('admin.departments.index', compact('departments', 'users'));
     }
 
     // ... (Métodos create, store e edit são padrão CRUD, vou pular para economizar espaço) ...
@@ -20,8 +27,20 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        Department::create($request->validate(['name' => 'required', 'description' => 'nullable']));
-        return back()->with('success', 'Departamento criado!');
+        $validated = $request->validate([
+            'name' => 'required|string|unique:departments',
+            'description' => 'nullable|string',
+            'slug' => 'nullable|string',
+        ]);
+
+        // Gerar slug se não fornecido
+        // $validated['slug'] = $validated['slug'] ?? \Str::slug($validated['name']);
+        $validated['slug'] = $validated['slug'] ?? \Str::slug($validated['name']);
+        
+        Department::create($validated);
+        
+        return redirect()->back()->with('success', 'Departamento criado com sucesso!');
+
     }
 
     // Exibe a tela de gerenciar membros de um departamento específico

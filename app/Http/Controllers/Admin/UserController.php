@@ -36,6 +36,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('admin.users.create');
     }
 
     /**
@@ -43,7 +44,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:50', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'birth_date' => ['nullable', 'string', 'max:255'],
+            'is_admin' => ['nullable', 'string'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $avatarPath = null;
+
+        // Verifica se a imagem foi enviada no array $data
+        if (isset($data['avatar'])) {
+            // Salva na pasta 'storage/app/public/avatars' e retorna o caminho
+            $avatarPath = $data['avatar']->store('avatars', 'public');
+        }
+
+        User::create([
+            'name' => $data['name'],
+            'username' => $data['username'], // Novo campo
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'avatar_path' => $avatarPath, // Salva o caminho (ex: avatars/nome-do-arquivo.jpg)
+            'phone' => $data['phone'] ?? null,     // Caso você adicione o input depois
+            'address' => $data['address'] ?? null, // Caso você adicione o input depois
+            'birth_date' => $data['birth_date'] ?? null,
+            'is_admin' => false, // Padrão
+        ]);
+
+        return redirect()->route('admin.users.index')->with('success', 'Membro criado com sucesso!');
     }
 
     /**
@@ -52,6 +84,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**

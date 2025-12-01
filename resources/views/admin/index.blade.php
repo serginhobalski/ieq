@@ -23,6 +23,9 @@
                     <a href="{{ route('admin.groups.index') }}" class="btn btn-info">
                         <i class="fas fa-share-alt"></i>Gerenciar Grupos
                     </a>
+                    <a href="{{ route('admin.departments.index') }}" class="btn btn-info">
+                        <i class="fas fa-folder-open"></i>Gerenciar Departamentos
+                    </a>
                 </center>
             </div>
         </div>

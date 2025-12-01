@@ -17,8 +17,15 @@ Auth::routes();
 
 // Rota dos Membros (Padrão do Laravel UI)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/chat', [ChatMessageController::class, 'index'])->name('chat');
-Route::get('/calendar/feed', [HomeController::class, 'events'])->name('calendar.feed');
+Route::get('/calendar/feed', [HomeController::class, 'feed'])->name('calendar.feed');
+Route::get('/events', [HomeController::class, 'events'])->name('events');
+Route::get('/groups', [HomeController::class, 'groups'])->name('groups');
+Route::get('/volunteers', [HomeController::class, 'volunteers'])->name('volunteers');
+Route::get('/debq', [HomeController::class, 'debq'])->name('debq');
+Route::get('/trilho', [HomeController::class, 'trilho'])->name('trilho');
+Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devotionals');
+Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
+Route::resource('chat', App\Http\Controllers\ChatMessageController::class);
 
 
 // --- ÁREA ADMINISTRATIVA (Protegida) ---
@@ -35,7 +42,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('groups', \App\Http\Controllers\Admin\GroupController::class);
 
     // Gestão de Membros
-    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['create', 'store', 'show']);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
     
     // Aqui entrarão as rotas dos seus módulos depois
     Route::resource('events', EventController::class);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Group;
 
 class HomeController extends Controller
 {
@@ -28,8 +29,15 @@ class HomeController extends Controller
         return view('home.dashboard');
     }
 
+    public function events()
+    {
+        // Pega os eventos ordenados pela data mais próxima, 10 por página
+        $events = Event::orderBy('start_at', 'desc')->paginate(10);
+        return view('home.events', compact('events'));
+    }
+
     // Retorna o JSON que o FullCalendar vai consumir via AJAX
-    public function events(Request $request)
+    public function feed(Request $request)
     {
         // O FullCalendar envia automaticamente parâmetros 'start' e 'end' 
         // para carregar apenas o mês visível. Vamos filtrar para performance.
@@ -67,4 +75,43 @@ class HomeController extends Controller
 
         return response()->json($events);
     }
+
+    public function groups()
+    {
+        // Traz os grupos com o nome do líder (Eager Loading para performance)
+        $groups = Group::with('leader')->get();
+        return view('home.groups', compact('groups'));
+    }
+
+    public function volunteers()
+    {
+        return view('home.volunteers');
+    }
+
+    public function chat()
+    {
+        return view('home.chat');
+    }
+
+    public function pray()
+    {
+        return view('home.pray');
+    }
+
+    public function debq()
+    {
+        return view('home.debq');
+    }
+
+    public function trilho()
+    {
+        return view('home.trilho');
+    }
+
+    public function devotionals()
+    {
+        return view('home.devotionals');
+    }
+
+
 }

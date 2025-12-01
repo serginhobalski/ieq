@@ -533,19 +533,19 @@
                                             <hr class="mb-0 navbar-vertical-divider" />
                                         </div>
                                     </div>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('events')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span>
                                             <span class="nav-link-text ps-1">Eventos</span>
                                         </div>
                                     </a>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('groups')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-share-alt"></span></span>
                                             <span class="nav-link-text ps-1">Grupos de Comunhão</span>
                                         </div>
                                     </a>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('volunteers')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-people-carry"></span></span>
                                             <span class="nav-link-text ps-1">Voluntariado</span>
@@ -567,19 +567,19 @@
                                             <hr class="mb-0 navbar-vertical-divider" />
                                         </div>
                                     </div>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('debq')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-graduation-cap"></span></span>
                                             <span class="nav-link-text ps-1">DEBQ</span>
                                         </div>
                                     </a>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('trilho')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-user-graduate"></span></span>
                                             <span class="nav-link-text ps-1">Trilho</span>
                                         </div>
                                     </a>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('devotionals')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-graduation-cap"></span></span>
                                             <span class="nav-link-text ps-1">Deocionais</span>
@@ -593,13 +593,13 @@
                                             <hr class="mb-0 navbar-vertical-divider" />
                                         </div>
                                     </div>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('chat.index')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-comments"></span></span>
                                             <span class="nav-link-text ps-1">Chat IEQ</span>
                                         </div>
                                     </a>
-                                    <a class="nav-link" href="#" role="button">
+                                    <a class="nav-link" href="{{route('pray')}}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon"><span class="fas fa-pray"></span></span>
                                             <span class="nav-link-text ps-1">Pedidos de Oração</span>

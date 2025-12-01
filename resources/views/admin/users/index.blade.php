@@ -5,13 +5,16 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Membros da Igreja</h2>
         
         <form action="{{ route('admin.users.index') }}" method="GET" class="d-flex">
             <input type="text" name="search" class="form-control me-2" placeholder="Buscar por nome ou email..." value="{{ request('search') }}">
-            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+            <button class="btn btn-outline-primary me-2" type="submit">Buscar</button>
+            <a class="btn btn-info" title="Criar membro" href="{{route('admin.users.create')}}">
+                <i class="fas fa-user-plus"></i> Criar membro
+            </a>
         </form>
     </div>
 
