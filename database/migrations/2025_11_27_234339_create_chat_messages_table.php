@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('group_id')->nullable()->constrained(); // Null = Chat Geral
-            $table->text('message');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->text('content');
+            // O 'room' define se é o chat 'geral', 'grupo-1', 'dept-5'.
+            // Por padrão, começaremos com o 'geral'.
+            $table->string('room')->default('geral');
             $table->timestamps();
         });
     }
