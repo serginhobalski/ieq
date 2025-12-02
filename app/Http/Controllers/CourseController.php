@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -11,7 +12,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Cursos';
+        $courses = Course::with('lessons')->orderBy('title', 'desc')->get();
+        return view('courses.index', compact('courses', 'title'));
     }
 
     /**
@@ -35,7 +38,9 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $course = Course::with('lessons')->findOrFail($id);
+        $title = $course->title;
+        return view('courses.show', compact('course', 'title'));
     }
 
     /**
@@ -59,6 +64,7 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Course::destroy($id);
+        return redirect()->back()->with('success', 'Curso deletado com sucesso!');
     }
 }

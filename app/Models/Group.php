@@ -27,7 +27,7 @@ class Group extends Model
     // Usaremos isso mais tarde para adicionar pessoas ao grupo
     public function members()
     {
-        return $this->belongsToMany(User::class, 'group_user')
+        return $this->belongsToMany(User::class, 'group_users')
                     ->withPivot('is_co_leader')
                     ->withTimestamps();
     }

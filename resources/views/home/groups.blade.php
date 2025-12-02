@@ -11,9 +11,11 @@
     <div class="container-fluid mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Grupos de Conexão</h2>
+            @if (Auth::user()->is_admin == 1)
             <a href="{{ route('admin.groups.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Novo Grupo
             </a>
+            @endif
         </div>
 
         @if (session('success'))
@@ -32,8 +34,16 @@
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('admin.groups.edit', $group) }}">Editar</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="">
+                                                Ver
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.groups.edit', $group) }}">Editar
+                                            </a>
+                                        </li>
                                         <li>
                                             <form action="{{ route('admin.groups.destroy', $group) }}" method="POST"
                                                 onsubmit="return confirm('Excluir este grupo?')">
@@ -62,8 +72,17 @@
                             </ul>
 
                             <div class="mb-3 mt-2">
+                                <a href="" class="btn btn-info">
+                                    <i class="fas fa-external-link-alt"></i> Ver
+                                </a>
+                                @if (Auth::user()->id == $group->leader_id)
+                                <a href="{{route('groups.edit', $group->id)}}" class="btn btn-success">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                @endif
+                                @if (Auth::user()->is_admin == 1)
                                 <a href="{{route('admin.groups.edit', $group->id)}}" class="btn btn-info">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-edit"></i>Ver
                                 </a>
                                 <a href="{{route('admin.groups.destroy', $group->id)}}" class="btn btn-danger"
                                     onclick="event.preventDefault();
@@ -74,6 +93,7 @@
                                     @method('DELETE')
                                     @csrf
                                 </form>
+                                @endif
                             </div>
                         </div>
                     </div>

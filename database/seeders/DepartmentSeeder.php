@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,14 +15,14 @@ class DepartmentSeeder extends Seeder
     {
         $departments = [
             [
-                'name' => 'Crianças e Juniores',
+                'name' => 'Infantil',
                 'slug' => 'gmc',
-                'description' => 'Grupo Missionário de Crianças',
+                'description' => 'Grupo Missionário de Crianças e Juniores',
             ],
             [
-                'name' => 'Jovens e Adolescentes',
+                'name' => 'Jovens',
                 'slug' => 'gfq',
-                'description' => 'Geração Forte Quadrangular',
+                'description' => 'Geração Forte Quadrangular - Grupo de Joverns e Adolescentes',
             ],
             [
                 'name' => 'Casais',
@@ -41,12 +42,12 @@ class DepartmentSeeder extends Seeder
             [
                 'name' => 'Música',
                 'slug' => 'musica',
-                'description' => '',
+                'description' => 'Grupo de Louvor e Música',
             ],
             [
                 'name' => 'Comunicação',
                 'slug' => 'secom',
-                'description' => 'Secretaria de Comunicação',
+                'description' => 'Secretaria de Comunicação, Marketing e Mídias Sociais',
             ],
             [
                 'name' => 'Diaconato',

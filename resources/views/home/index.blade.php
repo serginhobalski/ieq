@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- ===============================================--><!--    Document Title--><!-- ===============================================-->
-    <title>{{ env('APP_NAME') }} | @yield('title')</title>
+    <title>{{ env('APP_NAME') }} | Início</title>
 
     <!-- ===============================================--><!--    Favicons--><!-- ===============================================-->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('') }}assets/img/favicons/apple-touch-icon.png">
@@ -102,80 +102,114 @@
                             </div>
                         </li>
                         @guest
-                        <!-- AUTENTICAÇÃO -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Entrar
-                            </a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card"
-                                aria-labelledby="navbarDropdownLogin">
-                                <div class="card shadow-none navbar-card-login">
-                                    <div class="card-body fs-10 p-4 fw-normal">
-                                        <div class="row text-start justify-content-between align-items-center mb-2">
-                                            <div class="col-auto">
-                                                <h5 class="mb-0">Entrar</h5>
-                                            </div>
-                                            <div class="col-auto">
-                                                <p class="fs-10 text-600 mb-0">ou
-                                                    <a href="#!" data-bs-toggle="modal"
-                                                        data-bs-target="#registerModal">
-                                                        Criar uma conta
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <input class="form-control" type="email" name="email"
-                                                    placeholder="E-mail" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <input class="form-control" name="password" type="password"
-                                                    placeholder="Senha" />
-                                            </div>
-                                            <div class="row flex-between-center">
+                            <!-- AUTENTICAÇÃO -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Entrar
+                                </a>
+                                <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card"
+                                    aria-labelledby="navbarDropdownLogin">
+                                    <div class="card shadow-none navbar-card-login">
+                                        <div class="card-body fs-10 p-4 fw-normal">
+                                            <div class="row text-start justify-content-between align-items-center mb-2">
                                                 <div class="col-auto">
-                                                    <div class="form-check mb-0">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="modal-checkbox" />
-                                                        <label class="form-check-label mb-0"
-                                                            for="modal-checkbox">Lembrar</label>
+                                                    <h5 class="mb-0">Entrar</h5>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <p class="fs-10 text-600 mb-0">ou
+                                                        <a href="#!" data-bs-toggle="modal"
+                                                            data-bs-target="#registerModal">
+                                                            Criar uma conta
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <form method="POST" action="{{ route('login') }}">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <input class="form-control @error('login') is-invalid @enderror"
+                                                        type="text" name="login"
+                                                        placeholder="E-mail ou nome de usuário" />
+                                                    @error('login')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input class="form-control @error('password') is-invalid @enderror"
+                                                        name="password" type="password" placeholder="Senha" />
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="row flex-between-center">
+                                                    <div class="col-auto">
+                                                        <div class="form-check mb-0">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="modal-checkbox" />
+                                                            <label class="form-check-label mb-0"
+                                                                for="modal-checkbox">Lembrar</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a class="fs-10" href="#">Esqueceu a Senha?</a>
                                                     </div>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <a class="fs-10" href="#">Esqueceu a Senha?</a>
+                                                <div class="mb-3">
+                                                    <button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                                        name="submit">Entrar</button>
                                                 </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                                    name="submit">Entrar</button>
-                                            </div>
-                                        </form>
+                                            </form>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-- CADASTRO -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!" data-bs-toggle="modal"
-                                data-bs-target="#registerModal">
-                                Cadastrar
-                            </a>
-                        </li>
+                            </li>
+                            <!-- CADASTRO -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!" data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">
+                                    Cadastrar
+                                </a>
+                            </li>
                         @else
-                        <!-- PAINEL -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('home') }}">
-                                <img src="{{ Auth::user()->avatar_url }}" 
-                                    alt="{{ Auth::user()->name }}" 
-                                    class="rounded-circle me-2" 
-                                    width="40" height="40" 
-                                    style="object-fit: cover;">
-                            </a>
-                        </li>
+                            <!-- PAINEL -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownUser" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}"
+                                        class="rounded-circle me-2" width="40" height="40"
+                                        style="object-fit: cover;">
+                                </a>
+                                <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card"
+                                    aria-labelledby="navbarDropdownUser">
+                                    <div class="card shadow-none navbar-card-login">
+                                        <div class="card-body fs-10 p-2 text-center">
+                                            <div class="mb-3">
+                                                <a class="btn btn-success" href="{{ url('home') }}">
+                                                    <i class="fas fa-chalkboard-teacher"></i> Meu Painel
+                                                </a>                                                
+                                            </div>
+                                            <div class="mb-3">
+                                                <a class="btn btn-primary" href="{{ url('profile') }}">
+                                                    <i class="fas fa-id-card"></i> Meu Perfil
+                                                </a>                                                
+                                            </div>
+                                            <div class="mb-3">
+                                                <a class="btn btn-danger" href="{{ url('logout') }}">
+                                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                                </a>                                                
+                                            </div>
+                                            <form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -193,41 +227,79 @@
                             </div>
                             <div class="col-auto">
                                 <p class="fs-10 text-600 mb-0">Já possui um conta?
-                                    <a href="#">Clique em "Entrar"</a>
+                                    <a href="{{ route('login') }}">Clique em "Entrar"</a>
                                 </p>
                             </div>
                         </div>
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <input name="name" class="form-control" type="text" autocomplete="on" value="{{ old('name') }}"
-                                    placeholder="Nome completo" />
+                                <input name="name" class="form-control" type="text" autocomplete="on"
+                                    value="{{ old('name') }}" autocomplete="name" placeholder="Nome completo" />
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <input name="username" class="form-control" type="text" autocomplete="on" value="{{ old('username') }}"
+                                <input name="username" class="form-control" type="text"
+                                    value="{{ old('username') }}" autocomplete="username"
                                     placeholder="Nome de usuário" />
+                                <small class="text-danger">*Não coloque espaços nem caixa alta no nome de
+                                    usuário.</small>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <input name="email" class="form-control" type="email" autocomplete="on" value="{{ old('email') }}"
-                                    placeholder="E-mail" />
+                                <input name="email" class="form-control" type="email" autocomplete="email"
+                                    value="{{ old('email') }}" placeholder="E-mail" />
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <input name="phone" class="form-control" type="tel" autocomplete="on" value="{{ old('phone') }}"
-                                    placeholder="Telefone" />
+                                <input name="phone" class="form-control" type="tel" autocomplete="phone"
+                                    value="{{ old('phone') }}" placeholder="Telefone" />
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <input name="address" class="form-control" type="text" autocomplete="on" value="{{ old('address') }}"
-                                    placeholder="Endereço completo" />
+                                <input name="address" class="form-control" type="text" autocomplete="address"
+                                    value="{{ old('address') }}" placeholder="Endereço completo" />
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <input name="birth_date" class="form-control" type="date" autocomplete="on" value="{{ old('birth_date') }}"
+                                <input name="birth_date" class="form-control" type="date"
+                                    autocomplete="birth_date" value="{{ old('birth_date') }}"
                                     placeholder="Data de nascimento" />
-
-                                <input name="is_admin"  type="text" value="0" hidden readonly/>
+                                @error('birth_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input name="is_admin" type="text" value="0" hidden readonly />
                             </div>
                             <div class="mb-3">
-                                <input name="avatar" class="form-control" type="file" autocomplete="on" value="{{ old('avatar_path') }}"
-                                    placeholder="Foto de perfil" />
+                                <input name="avatar" class="form-control" type="file" autocomplete="avatar"
+                                    value="{{ old('avatar_path') }}" placeholder="Foto de perfil" />
+                                @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="row gx-2">
                                 <div class="mb-3 col-sm-6">
@@ -252,7 +324,7 @@
                                 </button>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -495,9 +567,14 @@
                         </div>
                     </div>
                     <p class="mt-4">
-                        As quatro doutrinas centrais da Igreja são: Doutrina da salvação, Doutrina do batismo com o Espírito Santo, Doutrina da cura divina, Doutrina da segunda vinda. Cremos que Jesus tem poder pra Salvar, Batizar com fogo por intermédio do Espírito Santo, Curar e que em breve Voltará. <br>
+                        As quatro doutrinas centrais da Igreja são: Doutrina da salvação, Doutrina do batismo com o
+                        Espírito Santo, Doutrina da cura divina, Doutrina da segunda vinda. Cremos que Jesus tem poder
+                        pra Salvar, Batizar com fogo por intermédio do Espírito Santo, Curar e que em breve Voltará.
+                        <br>
 
-                        Baseada inteiramente na Bíblia, mais especificamente na passagem através da visão de Ezequiel (Ezequiel1). Somos uma das igrejas pentecostais pioneiras do avivamento carismático do início do século XX.
+                        Baseada inteiramente na Bíblia, mais especificamente na passagem através da visão de Ezequiel
+                        (Ezequiel1). Somos uma das igrejas pentecostais pioneiras do avivamento carismático do início do
+                        século XX.
                     </p>
                 </div>
             </div><!-- end of .container-->

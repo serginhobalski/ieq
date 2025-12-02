@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
 use App\Models\Event;
 use App\Models\Group;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -100,17 +105,74 @@ class HomeController extends Controller
 
     public function debq()
     {
-        return view('home.debq');
+        $title = 'Escola Bíblica (DEBQ)'; 
+        $courses = Course::with('lessons')->where('category', 'debq')->orderBy('title', 'asc')->get();
+        return view('home.debq', compact('courses','title'));
     }
 
     public function trilho()
     {
-        return view('home.trilho');
+        $title = 'Trilho de Crescimento';
+        $courses = Course::with('lessons')->where('category', 'trilho')->orderBy('title', 'asc')->get();
+        return view('home.trilho', compact('courses','title'));
     }
 
     public function devotionals()
     {
-        return view('home.devotionals');
+        $title = 'Devocionais';
+        return view('home.devotionals', compact('courses'));
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('home.profile', compact('user'));
+    }
+
+    /**
+     * Atualiza os dados do usuário logado.
+     */
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'phone' => 'nullable|string|max:20',
+            'birth_date' => 'nullable|date',
+            'address' => 'nullable|string|max:255',
+            'avatar' => 'nullable|image|max:2048', // Max 2MB
+            'password' => 'nullable|string|min:8|confirmed', // Senha opcional
+        ]);
+
+        // 1. Lógica de Upload de Avatar
+        if ($request->hasFile('avatar')) {
+            // Se já tiver avatar antigo (e não for um placeholder externo), deleta
+            if ($user->avatar_path && Storage::disk('public')->exists($user->avatar_path)) {
+                Storage::disk('public')->delete($user->avatar_path);
+            }
+
+            $user->avatar_path = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        // 2. Atualização de Senha (se preenchida)
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // 3. Atualiza os outros dados
+        $user->name = $data['name'];
+        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'] ?? $user->phone;
+        $user->birth_date = $data['birth_date'] ?? $user->birth_date;
+        $user->address = $data['address'] ?? $user->address;
+        
+        $user->save();
+
+        return back()->with('success', 'Perfil atualizado com sucesso!');
     }
 
 

@@ -17,15 +17,21 @@ Auth::routes();
 
 // Rota dos Membros (Padrão do Laravel UI)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::put('/profile', [HomeController::class, 'profileUpdate'])->name('profile.update');
 Route::get('/calendar/feed', [HomeController::class, 'feed'])->name('calendar.feed');
 Route::get('/events', [HomeController::class, 'events'])->name('events');
-Route::get('/groups', [HomeController::class, 'groups'])->name('groups');
+// Route::get('/groups', [HomeController::class, 'groups'])->name('groups');
 Route::get('/volunteers', [HomeController::class, 'volunteers'])->name('volunteers');
 Route::get('/debq', [HomeController::class, 'debq'])->name('debq');
 Route::get('/trilho', [HomeController::class, 'trilho'])->name('trilho');
 Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devotionals');
 Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
 Route::resource('chat', App\Http\Controllers\ChatMessageController::class);
+Route::resource('groups', App\Http\Controllers\GroupController::class);
+Route::resource('groups_members', App\Http\Controllers\GroupMemberController::class);
+Route::resource('courses', App\Http\Controllers\CourseController::class);
+
 
 
 // --- ÁREA ADMINISTRATIVA (Protegida) ---
@@ -69,4 +75,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::delete('scales/{id}', [\App\Http\Controllers\Admin\ScaleController::class, 'destroy'])
         ->name('scales.destroy');
     
+    // Rotas de Cursos
+    Route::resource('courses', \App\Http\Controllers\Admin\CourseController::class);
+
+    // Rotas específicas para adicionar/remover aulas dentro do curso
+    Route::post('courses/{course}/lessons', [\App\Http\Controllers\Admin\CourseController::class, 'storeLesson'])->name('courses.lessons.store');
+    Route::delete('lessons/{lesson}', [\App\Http\Controllers\Admin\CourseController::class, 'destroyLesson'])->name('lessons.destroy');
 });

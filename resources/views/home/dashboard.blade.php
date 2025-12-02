@@ -11,14 +11,23 @@
 
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
     
+    <div class="position-relative" data-bs-theme="light">
+        <div class="bg-holder rounded-2" style="background-image:url({{ asset('') }}assets/video/beach.jpg);">
+            <video class="bg-video"
+                autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline">
+                <source src="{{ asset('') }}assets/video/bg_video.mp4" type="video/mp4" />
+                {{-- <source src="{{ asset('') }}assets/video/beach.webm" type="video/webm" /> --}}
+            </video></div> <!--/.bg-holder-->
+        <div class="position-relative vh-75 d-flex flex-center">
+            <h1 class="text-white fw-light">
+                Esta é a sua <span class="typed-text fw-bold" 
+                data-typed-text='["casa","família","comunidade","igreja"]'></span>!
+            </h1>            
+        </div>
+    </div>
     <div class="container-fluid pt-4">
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Calendário Geral</h2>
         </div>

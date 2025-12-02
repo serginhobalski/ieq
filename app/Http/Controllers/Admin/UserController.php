@@ -25,7 +25,7 @@ class UserController extends Controller
         }
 
         // Paginação de 15 por página, ordenado pelos mais novos
-        $users = $query->orderBy('created_at', 'desc')->paginate(15);
+        $users = $query->orderBy('name', 'asc')->paginate(15);
 
         return view('admin.users.index', compact('users'));
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category'); // 'ebd', 'trilho_crescimento'
             $table->text('description')->nullable();
             $table->string('cover_image')->nullable();
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }
