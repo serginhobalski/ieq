@@ -27,10 +27,13 @@ Route::get('/debq', [HomeController::class, 'debq'])->name('debq');
 Route::get('/trilho', [HomeController::class, 'trilho'])->name('trilho');
 Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devotionals');
 Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
-Route::resource('chat', App\Http\Controllers\ChatMessageController::class);
-Route::resource('groups', App\Http\Controllers\GroupController::class);
-Route::resource('groups_members', App\Http\Controllers\GroupMemberController::class);
-Route::resource('courses', App\Http\Controllers\CourseController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/bible', [App\Http\Controllers\BibleController::class, 'index'])->name('bible.index');
+    Route::resource('chat', App\Http\Controllers\ChatMessageController::class);
+    Route::resource('groups', App\Http\Controllers\GroupController::class);
+    Route::resource('groups_members', App\Http\Controllers\GroupMemberController::class);
+    Route::resource('courses', App\Http\Controllers\CourseController::class);
+});
 
 
 

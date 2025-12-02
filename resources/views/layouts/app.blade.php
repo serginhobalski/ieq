@@ -141,7 +141,7 @@
                                         <span class="nav-link-text ps-1">Voluntariado</span>
                                     </div>
                                 </a>
-                                <a class="nav-link" href="#" role="button">
+                                <a class="nav-link" href="{{route('bible.index')}}" role="button">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon"><span class="fas fa-bible"></span></span>
                                         <span class="nav-link-text ps-1">Bíblia<span
