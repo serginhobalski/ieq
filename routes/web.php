@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ChatMessageController;
+use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
@@ -29,10 +30,14 @@ Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devoti
 Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
 Route::middleware(['auth'])->group(function () {
     Route::get('/bible', [App\Http\Controllers\BibleController::class, 'index'])->name('bible.index');
-    Route::resource('chat', App\Http\Controllers\ChatMessageController::class);
     Route::resource('groups', App\Http\Controllers\GroupController::class);
     Route::resource('groups_members', App\Http\Controllers\GroupMemberController::class);
     Route::resource('courses', App\Http\Controllers\CourseController::class);
+    Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/history', [App\Http\Controllers\ChatController::class, 'history'])->name('chat.history');
+    Route::post('/chat/send', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('chat.send');
+    Route::post('/groups/{group}/join', [App\Http\Controllers\GroupMemberController::class, 'join'])->name('groups.join');
+    Route::post('/groups/{group}/leave', [App\Http\Controllers\GroupMemberController::class, 'leave'])->name('groups.leave');
 });
 
 

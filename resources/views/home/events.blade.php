@@ -13,7 +13,12 @@
 @section('content')
     <div class="container-fluid pt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Eventos</h2>            
+            <h2>Eventos</h2>
+            @if (Auth::user()->is_admin)
+            <a href="{{ route('admin.events.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Novo Evento
+            </a>
+            @endif
         </div>
 
         @if (session('success'))

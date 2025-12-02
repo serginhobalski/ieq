@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Bíblia Sagrada -ARC
+@endsection
+
 @section('content')
     <div class="container-fluid h-100 mt-4">
         <div class="row h-100">

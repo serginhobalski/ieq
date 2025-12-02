@@ -70,13 +70,14 @@
 
                             <div class="mb-3 mt-2">
                                 <a href="{{ route('groups.edit', $group->id) }}" class="btn btn-info">
-                                    <i class="fas fa-external-link-alt"></i> Ver
+                                    <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                @if (Auth::user()->id == $group->leader_id)
-                                    <a href="#" class="btn btn-success mt-3"
-                                        data-bs-toggle="modal" data-bs-target="#modalAdd{{ $group->id }}">
-                                        <i class="fas fa-user-plus"></i> Adicionar Membro
+                                @if (Auth::user()->id == $group->leader_id || Auth::user()->is_admin == 1)
+                                    <a href="#" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalAdd{{ $group->id }}">
+                                        <i class="fas fa-user-plus"></i>
                                     </a>
+
                                     <div class="modal fade" id="modalAdd{{ $group->id }}" tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -94,11 +95,7 @@
                                                     <div class="modal-body">
                                                         <div class="mb-3">
                                                             <input type="text hidden" name="group_id"
-                                                                value="{{ $group->id }}" 
-                                                                hidden>
-                                                            <input type="text hidden" name="is_co_leader"
-                                                                value="0" 
-                                                                hidden>
+                                                                value="{{ $group->id }}" hidden>
                                                             <label>
                                                                 Selecionar Membro do Grupo
                                                             </label>
@@ -111,15 +108,15 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        {{-- <div class="mb-3">
+                                                        <div class="mb-3">
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
                                                                     name="is_co_leader">
                                                                 <label class="form-check-label">
-                                                                    É co-líder do grupo   
+                                                                    É co-líder do grupo
                                                                 </label>
                                                             </div>
-                                                        </div> --}}
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary">
@@ -141,6 +138,53 @@
                                         method="POST" class="d-none">
                                         @method('DELETE')
                                         @csrf
+                                    </form>
+                                @endif
+                            </div>
+
+                            <hr>
+
+                            <h6 class="fw-bold">Membros do Grupo:</h6>
+                            <div class="d-flex flex-wrap align-items-center">
+                                <!-- Lista de Membros -->
+                                @foreach ($group->members as $member)
+                                    <div class="text-center me-3 mb-2" title="{{ $member->name }}">
+                                        <!-- Dica: Adicionei um fallback caso a imagem quebre ou seja nula -->
+                                        <img src="{{ $member->avatar_url }}" class="rounded-circle border" width="50"
+                                            height="50" style="object-fit: cover;" alt="{{ $member->name }}">
+                                        <div class="small text-truncate" style="max-width: 60px;">
+                                            {{ explode(' ', $member->name)[0] }} <!-- Mostra só o primeiro nome -->
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <hr>
+
+                            <div class="d-flex align-items-center mt-3">
+                                {{-- Lógica de Botões --}}
+                                @if ($group->members->contains(Auth::user()->id))
+                                    <span class="me-2 text-success">Você participa deste grupo.</span>
+
+                                    {{-- BOTÃO SAIR --}}
+                                    @if (Auth::user()->is_admin == 1)                                        
+                                    <form action="{{ route('groups.leave', $group->id) }}" method="POST"
+                                        onsubmit="return confirm('Tem certeza que deseja sair deste grupo?');">                                        
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-sign-out-alt me-1"></i> Sair do Grupo
+                                        </button>
+                                    </form>
+                                    @endif
+                                @else
+                                    <span class="me-2">Deseja participar das reuniões?</span>
+
+                                    {{-- BOTÃO ENTRAR --}}
+                                    <form action="{{ route('groups.join', $group->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-user-plus me-1"></i> Ingressar no Grupo
+                                        </button>
                                     </form>
                                 @endif
                             </div>

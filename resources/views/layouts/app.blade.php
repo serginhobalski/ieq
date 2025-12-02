@@ -13,10 +13,8 @@
     <script type="text/javascript" src="{{ asset('') }}js/local.js"></script>
     <script type="text/javascript" src="{{ asset('') }}js/user.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('icon.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icon.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('icon.png') }}">
     <link rel="manifest" href="{{ asset('') }}assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="{{ asset('') }}assets/img/favicons/mstile-150x150.png">
@@ -53,6 +51,8 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
+    <!-- Scripts 'resources/sass/app.scss',  -->
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -68,455 +68,308 @@
                 }
             </script>
             <!-- MENU TOPO =======-->
-            <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg" data-double-top-nav="data-double-top-nav" style="display: none;">
-                    <div class="w-100">
-                        <div class="d-flex flex-between-center">
-                            <button
-                                class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#navbarDoubleTop"
-                                aria-controls="navbarDoubleTop"
-                                aria-expanded="false"
-                                aria-label="Toggle Navigation">
-                                <span class="navbar-toggle-icon">
-                                    <span class="toggle-line"></span>
-                                </span>
-                            </button>
-                            <a class="navbar-brand me-1 me-sm-3" href="#">
-                                <div class="d-flex align-items-center">
-                                    <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
-                                    {{-- <span class="font-sans-serif text-primary">IEQ</span> --}}
-                                </div>
-                            </a>
-                            <ul class="navbar-nav align-items-center d-none d-lg-block">
-                                <li class="nav-item"></li>
-                            </ul>
-                            <ul
-                                class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
-                                <!-- tema =======-->
-                                <li class="nav-item ps-2 pe-0">
-                                    <div class="dropdown theme-control-dropdown">
-                                        <a
-                                            class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
-                                            href="#" role="button" id="themeSwitchDropdown"
-                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <span class="fas fa-sun fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="light"></span>
-                                            <span class="fas fa-moon fs-7" data-fa-transform="shrink-3" data-theme-dropdown-toggle-icon="dark"></span>
-                                            <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="auto"></span>
-                                        </a>
-                                        <div
-                                            class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
-                                            aria-labelledby="themeSwitchDropdown">
-                                            <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                                <button
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    type="button" value="light" data-theme-control="theme">
-                                                    <span class="fas fa-sun"></span>
-                                                    Light
-                                                    <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
-                                                </button>
-                                                <button
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    type="button" value="dark" data-theme-control="theme">
-                                                    <span class="fas fa-moon" data-fa-transform></span>
-                                                    Dark
-                                                    <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
-                                                </button>
-                                                <button
-                                                    class="dropdown-item d-flex align-items-center gap-2"
-                                                    type="button" value="auto" data-theme-control="theme">
-                                                    <span class="fas fa-adjust" data-fa-transform></span>
-                                                    Auto
-                                                    <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <!-- notificações =======-->
-                                <li class="nav-item dropdown">
-                                    <a
-                                        class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
-                                        id="navbarDropdownNotification"
-                                        role="button" data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        data-hide-on-body-scroll="data-hide-on-body-scroll">
-                                        <span
-                                            class="fas fa-bell"
-                                            data-fa-transform="shrink-6"
-                                            style="font-size: 33px;">
-                                        </span>
-                                    </a>
-                                    <div
-                                        class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
-                                        aria-labelledby="navbarDropdownNotification">
-                                        <div
-                                            class="card card-notification shadow-none">
-                                            <div class="card-header">
-                                                <div
-                                                    class="row justify-content-between align-items-center">
-                                                    <div class="col-auto">
-                                                        <h6
-                                                            class="card-header-title mb-0">Notificações</h6>
-                                                    </div>
-                                                    <div
-                                                        class="col-auto ps-0 ps-sm-3"><a
-                                                            class="card-link fw-normal"
-                                                            href="#">Mark all as
-                                                            read</a></div>
-                                                </div>
-                                            </div>
-                                            <div class="scrollbar-overlay"
-                                                style="max-height:19rem">
-                                                <div
-                                                    class="list-group list-group-flush fw-normal fs-10">
-                                                    <div
-                                                        class="list-group-title border-bottom">NEW</div>
-                                                    <div
-                                                        class="list-group-item">
-                                                        <a
-                                                            class="notification notification-flush notification-unread"
-                                                            href="#!">
-                                                            <div
-                                                                class="notification-avatar">
-                                                                <div
-                                                                    class="avatar avatar-2xl me-3">
-                                                                    <img
-                                                                        class="rounded-circle"
-                                                                        src="assets/img/team/1-thumb.png"
-                                                                        alt />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="notification-body">
-                                                                <p
-                                                                    class="mb-1"><strong>Emma
-                                                                        Watson</strong>
-                                                                    replied to
-                                                                    your comment
-                                                                    :
-                                                                    "Hello world 😍"</p>
-                                                                <span
-                                                                    class="notification-time"><span
-                                                                        class="me-2"
-                                                                        role="img"
-                                                                        aria-label="Emoji">💬</span>Just
-                                                                    now</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="list-group-item">
-                                                        <a
-                                                            class="notification notification-flush notification-unread"
-                                                            href="#!">
-                                                            <div
-                                                                class="notification-avatar">
-                                                                <div
-                                                                    class="avatar avatar-2xl me-3">
-                                                                    <div
-                                                                        class="avatar-name rounded-circle"><span>AB</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="notification-body">
-                                                                <p
-                                                                    class="mb-1"><strong>Albert
-                                                                        Brooks</strong>
-                                                                    reacted to
-                                                                    <strong>Mia
-                                                                        Khalifa's</strong>
-                                                                    status
-                                                                </p>
-                                                                <span
-                                                                    class="notification-time"><span
-                                                                        class="me-2 fab fa-gratipay text-danger"></span>9hr</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="list-group-title border-bottom">EARLIER</div>
-                                                    <div
-                                                        class="list-group-item">
-                                                        <a
-                                                            class="notification notification-flush"
-                                                            href="#!">
-                                                            <div
-                                                                class="notification-avatar">
-                                                                <div
-                                                                    class="avatar avatar-2xl me-3">
-                                                                    <img
-                                                                        class="rounded-circle"
-                                                                        src="assets/img/icons/weather-sm.jpg"
-                                                                        alt />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="notification-body">
-                                                                <p
-                                                                    class="mb-1">The
-                                                                    forecast
-                                                                    today shows
-                                                                    a low
-                                                                    of 20&#8451;
-                                                                    in
-                                                                    California.
-                                                                    See today's
-                                                                    weather.</p>
-                                                                <span
-                                                                    class="notification-time"><span
-                                                                        class="me-2"
-                                                                        role="img"
-                                                                        aria-label="Emoji">🌤️</span>1d</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="list-group-item">
-                                                        <a
-                                                            class="border-bottom-0 notification-unread  notification notification-flush"
-                                                            href="#!">
-                                                            <div
-                                                                class="notification-avatar">
-                                                                <div
-                                                                    class="avatar avatar-xl me-3">
-                                                                    <img
-                                                                        class="rounded-circle"
-                                                                        src="assets/img/logos/oxford.png"
-                                                                        alt />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="notification-body">
-                                                                <p
-                                                                    class="mb-1"><strong>University
-                                                                        of
-                                                                        Oxford</strong>
-                                                                    created an
-                                                                    event :
-                                                                    "Causal Inference Hilary 2019"</p>
-                                                                <span
-                                                                    class="notification-time"><span
-                                                                        class="me-2"
-                                                                        role="img"
-                                                                        aria-label="Emoji">✌️</span>1w</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div
-                                                        class="list-group-item">
-                                                        <a
-                                                            class="border-bottom-0 notification notification-flush"
-                                                            href="#!">
-                                                            <div
-                                                                class="notification-avatar">
-                                                                <div
-                                                                    class="avatar avatar-xl me-3">
-                                                                    <img
-                                                                        class="rounded-circle"
-                                                                        src="assets/img/team/10.jpg"
-                                                                        alt />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="notification-body">
-                                                                <p
-                                                                    class="mb-1"><strong>James
-                                                                        Cameron</strong>
-                                                                    invited to
-                                                                    join the
-                                                                    group:
-                                                                    United
-                                                                    Nations
-                                                                    International
-                                                                    Children's
-                                                                    Fund</p>
-                                                                <span
-                                                                    class="notification-time"><span
-                                                                        class="me-2"
-                                                                        role="img"
-                                                                        aria-label="Emoji">🙋‍</span>2d</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="card-footer text-center border-top"><a
-                                                    class="card-link d-block"
-                                                    href="app/social/notifications.html">View
-                                                    all</a></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <!-- usuário =======-->
-                                <li class="nav-item dropdown">
-                                    <a
-                                        class="nav-link pe-0 ps-2"
-                                        id="navbarDropdownUser"
-                                        role="button" data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <div class="avatar avatar-xl">
-                                            <img class="rounded-circle"
-                                                src="{{ Auth::user()->avatar_url }}"
-                                                alt="{{ Auth::user()->name }}" />
-                                        </div>
-                                    </a>
-                                    <div
-                                        class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
-                                        aria-labelledby="navbarDropdownUser">
-                                        <div
-                                            class="bg-white dark__bg-1000 rounded-2 py-2">
-                                            
-                                            <span class="fw-bold text-warning"> {{ Auth::user()->name }} </span>
-
-                                            <div class="dropdown-divider"></div>
-                                            
-                                            <a class="dropdown-item"
-                                                href="#">
-                                                <i class="fas fa-id-card-alt"></i> Perfil
-                                            </a>
-
-                                            <div class="dropdown-divider"></div>
-                                            
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                <i class="fas fa-sign-out-alt"></i> Sair
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <hr class="my-2 d-none d-lg-block" />
-                        <div class="collapse navbar-collapse scrollbar py-lg-2"
-                            id="navbarDoubleTop">
-                            <!-- navegação =======-->
-                            <ul class="navbar-nav"
-                                data-top-nav-dropdowns="data-top-nav-dropdowns">
-                                <!-- =======-->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('home')}}" >Painel</a>                                    
-                                </li>
-                                <!--  -->
-                                <li class="nav-item dropdown"><a
-                                        class="nav-link dropdown-toggle"
-                                        href="#" role="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        id="apps">App</a>
-                                    <div
-                                        class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                        aria-labelledby="apps">
-                                        <div
-                                            class="card navbar-card-app shadow-none dark__bg-1000">
-                                            <div
-                                                class="card-body scrollbar max-h-dropdown"><img
-                                                    class="img-dropdown"
-                                                    src="{{asset('')}}assets/img/icons/spot-illustrations/authentication-corner.png"
-                                                    width="130" alt />
-                                                <div class="row">
-                                                    <div class="col-6 col-md-4">
-                                                        <div class="nav flex-column">
-                                                            <a class="nav-link py-1 link-600 fw-medium" href="#">
-                                                                Eventos
-                                                            </a>
-                                                            <a class="nav-link py-1 link-600 fw-medium" title="Grupos de Comunhão" href="#">
-                                                                GC's
-                                                            </a>
-                                                            <a class="nav-link py-1 link-600 fw-medium" href="#">
-                                                                Voluntariado
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 col-md-4">
-                                                        <div class="nav flex-column">
-                                                            <p class="nav-link text-700 mb-0 fw-bold">Ensino</p>
-                                                                <a class="nav-link py-1 link-600 fw-medium" href="#">DEBQ</a>
-                                                                <a class="nav-link py-1 link-600 fw-medium" href="#">Trilho</a>
-                                                                <a class="nav-link py-1 link-600 fw-medium" href="#">Devocional</a>
-                                                                
-                                                            <p class="nav-link text-700 mb-0 fw-bold">Interação</p>
-                                                                <a class="nav-link py-1 link-600 fw-medium" href="#">Chat</a>
-                                                                <a class="nav-link py-1 link-600 fw-medium" href="#">Pedidos de Oração</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 col-md-4">
-                                                        <div class="nav flex-column">
-                                                            <a class="nav-link py-1 link-600 fw-medium" href="#">
-                                                                Bíblia
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none;">
-                    <script>
-                        var navbarStyle = localStorage.getItem("navbarStyle");
-                        if (navbarStyle && navbarStyle !== 'transparent') {
-                            document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
-                        }
-                    </script>
-                    <div class="d-flex align-items-center">
-                        <div class="toggle-icon-wrapper">
-                            <button
-                                class="btn navbar-toggler-humburger-icon navbar-vertical-toggle"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="left"
-                                title="Toggle Navigation">
-                                <span class="navbar-toggle-icon">
-                                    <span class="toggle-line"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--  branding =======-->
-                        <a class="navbar-brand" href="{{url('/')}}">
-                            <div class="d-flex align-items-center py-3">
-                                <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
+            <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg"
+                data-double-top-nav="data-double-top-nav" style="display: none;">
+                <div class="w-100">
+                    <div class="d-flex flex-between-center">
+                        <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarDoubleTop" aria-controls="navbarDoubleTop"
+                            aria-expanded="false" aria-label="Toggle Navigation">
+                            <span class="navbar-toggle-icon">
+                                <span class="toggle-line"></span>
+                            </span>
+                        </button>
+                        <a class="navbar-brand me-1 me-sm-3" href="#">
+                            <div class="d-flex align-items-center">
+                                <img class="me-2" src="{{ asset('logo-taquara.png') }}" alt width="120" />
                             </div>
                         </a>
-                    </div>
-                    <div class="collapse navbar-collapse"
-                        id="navbarVerticalCollapse">
-                        <div class="navbar-vertical-content scrollbar">
-                            <ul class="navbar-nav flex-column mb-3"
-                                id="navbarVerticalNav">
-                                <!-- navegação PRINCIPAL =======-->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('home')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon">
-                                                <span class="fas fa-house-user"></span>
-                                            </span>
-                                            <span class="nav-link-text ps-1">Painel</span>
-                                        </div>
+                        <ul class="navbar-nav align-items-center d-none d-lg-block">
+                            <li class="nav-item"></li>
+                        </ul>
+                        <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+                            <!-- tema =======-->
+                            <li class="nav-item ps-2 pe-0">
+                                <div class="dropdown theme-control-dropdown">
+                                    <a class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
+                                        href="#" role="button" id="themeSwitchDropdown" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="fas fa-sun fs-7" data-fa-transform="shrink-2"
+                                            data-theme-dropdown-toggle-icon="light"></span>
+                                        <span class="fas fa-moon fs-7" data-fa-transform="shrink-3"
+                                            data-theme-dropdown-toggle-icon="dark"></span>
+                                        <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2"
+                                            data-theme-dropdown-toggle-icon="auto"></span>
                                     </a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
+                                        aria-labelledby="themeSwitchDropdown">
+                                        <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                                            <button class="dropdown-item d-flex align-items-center gap-2"
+                                                type="button" value="light" data-theme-control="theme">
+                                                <span class="fas fa-sun"></span>
+                                                Light
+                                                <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
+                                            </button>
+                                            <button class="dropdown-item d-flex align-items-center gap-2"
+                                                type="button" value="dark" data-theme-control="theme">
+                                                <span class="fas fa-moon" data-fa-transform></span>
+                                                Dark
+                                                <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
+                                            </button>
+                                            <button class="dropdown-item d-flex align-items-center gap-2"
+                                                type="button" value="auto" data-theme-control="theme">
+                                                <span class="fas fa-adjust" data-fa-transform></span>
+                                                Auto
+                                                <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
 
-                                </li>
-                                <!-- Painel ADMIN =======--> 
-                                @if (Auth::user()->is_admin == true)
+                            <!-- notificações =======-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
+                                    id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"
+                                    data-hide-on-body-scroll="data-hide-on-body-scroll">
+                                    <span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;">
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
+                                    aria-labelledby="navbarDropdownNotification">
+                                    <div class="card card-notification shadow-none">
+                                        <div class="card-header">
+                                            <div class="row justify-content-between align-items-center">
+                                                <div class="col-auto">
+                                                    <h6 class="card-header-title mb-0">Notificações</h6>
+                                                </div>
+                                                <div class="col-auto ps-0 ps-sm-3">
+                                                    <a class="card-link fw-normal" href="#">
+                                                        Marcar todas como lidas
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="scrollbar-overlay" style="max-height:19rem">
+                                            <div class="list-group list-group-flush fw-normal fs-10">
+                                                <div class="list-group-title border-bottom">NEW</div>
+                                                <div class="list-group-item">
+                                                    <a class="notification notification-flush notification-unread"
+                                                        href="#!">
+                                                        <div class="notification-avatar">
+                                                            <div class="avatar avatar-2xl me-3">
+                                                                <img class="rounded-circle"
+                                                                    src="{{asset('')}}assets/img/team/1-thumb.png" 
+                                                                    alt />
+                                                            </div>
+                                                        </div>
+                                                        <div class="notification-body">
+                                                            <p class="mb-1">
+                                                                <strong>Maria Exemplo</strong>
+                                                                respondeu ao seu comentário:
+                                                                "Hello! 😍"
+                                                            </p>
+                                                            <span class="notification-time">
+                                                                <span class="me-2" role="img"
+                                                                    aria-label="Emoji">💬
+                                                                </span>
+                                                                Agora
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <a class="notification notification-flush notification-unread"
+                                                        href="#!">
+                                                        <div class="notification-avatar">
+                                                            <div class="avatar avatar-2xl me-3">
+                                                                <div class="avatar-name rounded-circle">
+                                                                    <span>FQ</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notification-body">
+                                                            <p class="mb-1">
+                                                                <strong>Fulaninho Qualquer</strong>
+                                                                resposdeu ao status:
+                                                                <strong>Fulaninha</strong>
+                                                            </p>
+                                                            <span class="notification-time">
+                                                                <span class="me-2 fab fa-gratipay text-danger">
+                                                                </span>
+                                                                9hr
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center border-top">
+                                            <a class="card-link d-block" href="#">
+                                                Ver tudo
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- usuário =======-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="avatar avatar-xl">
+                                        <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
+                                            alt="{{ Auth::user()->name }}" />
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
+                                    aria-labelledby="navbarDropdownUser">
+                                    <div class="bg-white dark__bg-1000 rounded-2 py-2">
+
+                                        <center>
+                                            <span class="fw-bold text-warning text-center">
+                                                {{ Auth::user()->name }}
+                                            </span>
+                                        </center>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            <i class="fas fa-house-user"></i> Meu Painel
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                            <i class="fas fa-id-card-alt"></i> Perfil
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt"></i> Sair
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="my-2 d-none d-lg-block" />
+                    <div class="collapse navbar-collapse scrollbar py-lg-2" id="navbarDoubleTop">
+                        <!-- navegação =======-->
+                        <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
+                            <!-- =======-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">Painel</a>
+                            </li>
+                            <!--  -->
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" id="apps">App</a>
+                                <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
+                                    aria-labelledby="apps">
+                                    <div class="card navbar-card-app shadow-none dark__bg-1000">
+                                        <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
+                                                src="{{ asset('') }}assets/img/icons/spot-illustrations/authentication-corner.png"
+                                                width="130" alt />
+                                            <div class="row">
+                                                <div class="col-6 col-md-4">
+                                                    <div class="nav flex-column">
+                                                        <a class="nav-link py-1 link-600 fw-medium" href="#">
+                                                            Eventos
+                                                        </a>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            title="Grupos de Comunhão" href="#">
+                                                            GC's
+                                                        </a>
+                                                        <a class="nav-link py-1 link-600 fw-medium" href="#">
+                                                            Voluntariado
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-4">
+                                                    <div class="nav flex-column">
+                                                        <p class="nav-link text-700 mb-0 fw-bold">Ensino</p>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            href="#">DEBQ</a>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            href="#">Trilho</a>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            href="#">Devocional</a>
+
+                                                        <p class="nav-link text-700 mb-0 fw-bold">Interação</p>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            href="#">Chat</a>
+                                                        <a class="nav-link py-1 link-600 fw-medium"
+                                                            href="#">Pedidos de Oração</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-4">
+                                                    <div class="nav flex-column">
+                                                        <a class="nav-link py-1 link-600 fw-medium" href="#">
+                                                            Bíblia
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none;">
+                <script>
+                    var navbarStyle = localStorage.getItem("navbarStyle");
+                    if (navbarStyle && navbarStyle !== 'transparent') {
+                        document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+                    }
+                </script>
+                <div class="d-flex align-items-center">
+                    <div class="toggle-icon-wrapper">
+                        <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle"
+                            data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation">
+                            <span class="navbar-toggle-icon">
+                                <span class="toggle-line"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <!--  branding =======-->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <div class="d-flex align-items-center py-3">
+                            <img class="me-2" src="{{ asset('logo-taquara.png') }}" alt width="120" />
+                        </div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+                    <div class="navbar-vertical-content scrollbar">
+                        <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+                            <!-- navegação PRINCIPAL =======-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon">
+                                            <span class="fas fa-house-user"></span>
+                                        </span>
+                                        <span class="nav-link-text ps-1">Painel</span>
+                                    </div>
+                                </a>
+
+                            </li>
+                            <!-- Painel ADMIN =======-->
+                            @if (Auth::user()->is_admin == true)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('admin.dashboard')}}" role="button">
+                                    <a class="nav-link" href="{{ route('admin.dashboard') }}" role="button">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon">
                                                 <span class="fas fa-cogs"></span>
@@ -525,304 +378,291 @@
                                         </div>
                                     </a>
                                 </li>
-                                @endif
-                                <li class="nav-item">
-                                    <!-- APP =======-->
-                                    <div
-                                        class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                                        <div class="col-auto navbar-vertical-label">App</div>
-                                        <div class="col ps-0">
-                                            <hr class="mb-0 navbar-vertical-divider" />
-                                        </div>
+                            @endif
+                            <li class="nav-item">
+                                <!-- APP =======-->
+                                <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                    <div class="col-auto navbar-vertical-label">App</div>
+                                    <div class="col ps-0">
+                                        <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
-                                    <a class="nav-link" href="{{route('events')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span>
-                                            <span class="nav-link-text ps-1">Eventos</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('groups.index')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-share-alt"></span></span>
-                                            <span class="nav-link-text ps-1">Grupos de Comunhão</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('volunteers')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-people-carry"></span></span>
-                                            <span class="nav-link-text ps-1">Voluntariado</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('bible.index')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-bible"></span></span>
-                                            <span class="nav-link-text ps-1">Bíblia<span
-                                                    class="badge rounded-pill ms-2 badge-subtle-success">App</span></span>
-                                        </div>
-                                    </a>
-                                    
-                                    <!-- Ensino =======-->                                  
-                                    <div
-                                        class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                                        <div class="col-auto navbar-vertical-label">Ensino</div>
-                                        <div class="col ps-0">
-                                            <hr class="mb-0 navbar-vertical-divider" />
-                                        </div>
+                                </div>
+                                <a class="nav-link" href="{{ route('events') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span>
+                                        <span class="nav-link-text ps-1">Eventos</span>
                                     </div>
-                                    <a class="nav-link" href="{{route('debq')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-book"></span></span>
-                                            <span class="nav-link-text ps-1">DEBQ</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('trilho')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-subway"></span></span>
-                                            <span class="nav-link-text ps-1">Trilho</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('devotionals')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-book-reader"></span></span>
-                                            <span class="nav-link-text ps-1">Deocionais</span>
-                                        </div>
-                                    </a>
-
-                                    <!-- Interação =======-->
-                                    <div
-                                        class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                                        <div class="col-auto navbar-vertical-label">Interação</div>
-                                        <div class="col ps-0">
-                                            <hr class="mb-0 navbar-vertical-divider" />
-                                        </div>
-                                    </div>
-                                    <a class="nav-link" href="{{route('chat.index')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-comments"></span></span>
-                                            <span class="nav-link-text ps-1">Chat IEQ</span>
-                                        </div>
-                                    </a>
-                                    <a class="nav-link" href="{{route('pray')}}" role="button">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon"><span class="fas fa-pray"></span></span>
-                                            <span class="nav-link-text ps-1">Pedidos de Oração</span>
-                                        </div>
-                                    </a>
-                                    
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
-                </nav>
-                <nav
-                    class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg"
-                    style="display: none;">
-                    <button
-                        class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarStandard"
-                        aria-controls="navbarStandard"
-                        aria-expanded="false"
-                        aria-label="Toggle Navigation">
-                        <span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
-                    </button>
-                    <!-- branding =======-->
-                    <a class="navbar-brand me-1 me-sm-3" href="#">
-                        <div class="d-flex align-items-center">
-                            <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
-                            {{-- <span class="font-sans-serif text-primary">IEQ</span> --}}
-                        </div>
-                    </a>
-                    <div class="collapse navbar-collapse scrollbar"
-                        id="navbarStandard">
-                        <!-- navegação =======-->
-                        <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">                            
-                        </ul>
-                    </div>
-                    <ul
-                        class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
-                        <!-- Botão tema -->
-                        <li class="nav-item ps-2 pe-0">
-                            <div class="dropdown theme-control-dropdown">
-                                <a
-                                    class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
-                                    href="#" role="button"
-                                    id="themeSwitchDropdown"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="fas fa-sun fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="light"></span>
-                                    <span class="fas fa-moon fs-7" data-fa-transform="shrink-3" data-theme-dropdown-toggle-icon="dark"></span>
-                                    <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="auto"></span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3" aria-labelledby="themeSwitchDropdown">
-                                    <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="light" data-theme-control="theme">
-                                            <span class="fas fa-sun"></span>Light<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
-                                        </button>
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="dark" data-theme-control="theme">
-                                            <span class="fas fa-moon" data-fa-transform></span>
-                                            Dark<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
-                                        </button>
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="auto" data-theme-control="theme">
-                                            <span class="fas fa-adjust" data-fa-transform></span>
-                                            Auto<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span></button>
+                                <a class="nav-link" href="{{ route('groups.index') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-share-alt"></span></span>
+                                        <span class="nav-link-text ps-1">Grupos de Comunhão</span>
+                                    </div>
+                                </a>
+                                <a class="nav-link" href="{{ route('volunteers') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-people-carry"></span></span>
+                                        <span class="nav-link-text ps-1">Voluntariado</span>
+                                    </div>
+                                </a>
+                                <a class="nav-link" href="{{ route('bible.index') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-bible"></span></span>
+                                        <span class="nav-link-text ps-1">Bíblia<span
+                                                class="badge rounded-pill ms-2 badge-subtle-success">App</span></span>
+                                    </div>
+                                </a>
+
+                                <!-- Ensino =======-->
+                                <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                    <div class="col-auto navbar-vertical-label">Ensino</div>
+                                    <div class="col ps-0">
+                                        <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-- Notificações -->
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
-                                id="navbarDropdownNotification" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"
-                                data-hide-on-body-scroll="data-hide-on-body-scroll"><span
-                                    class="fas fa-bell"
-                                    data-fa-transform="shrink-6"
-                                    style="font-size: 33px;"></span></a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
-                                aria-labelledby="navbarDropdownNotification">
-                                <div class="card card-notification shadow-none">
-                                    <div class="card-header">
-                                        <div
-                                            class="row justify-content-between align-items-center">
-                                            <div class="col-auto">
-                                                <h6
-                                                    class="card-header-title mb-0">Notificações</h6>
-                                            </div>
-                                            <div class="col-auto ps-0 ps-sm-3">
-                                                <a
-                                                    class="card-link fw-normal"
-                                                    href="#">
-                                                    Marcar todas como lidas
-                                                </a>
-                                            </div>
-                                        </div>
+                                <a class="nav-link" href="{{ route('debq') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-book"></span></span>
+                                        <span class="nav-link-text ps-1">DEBQ</span>
                                     </div>
-                                    <div class="scrollbar-overlay"
-                                        style="max-height:19rem">
-                                        <div
-                                            class="list-group list-group-flush fw-normal fs-10">
-                                            <div
-                                                class="list-group-title border-bottom">NEW</div>
-                                            <div class="list-group-item">
-                                                <a
-                                                    class="notification notification-flush notification-unread"
-                                                    href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-2xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="{{asset('')}}assets/img/team/1-thumb.png"
-                                                                alt />
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p class="mb-1">
-                                                            <strong>Mariazinha Exemplo</strong>
-                                                            respondeu ao seu:
-                                                            "Olá, pessoal! 😍"</p>
-                                                        <span class="notification-time">
-                                                            <span class="me-2" role="img" aria-label="Emoji">
-                                                                💬
-                                                            </span>Agora
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </div>                                            
-                                        </div>
+                                </a>
+                                <a class="nav-link" href="{{ route('trilho') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-subway"></span></span>
+                                        <span class="nav-link-text ps-1">Trilho</span>
                                     </div>
-                                    <div class="card-footer text-center border-top">
-                                        <a class="card-link d-block" href="#">
-                                            Ver todos
-                                        </a>
+                                </a>
+                                <a class="nav-link" href="{{ route('devotionals') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-book-reader"></span></span>
+                                        <span class="nav-link-text ps-1">Deocionais</span>
+                                    </div>
+                                </a>
+
+                                <!-- Interação =======-->
+                                <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                    <div class="col-auto navbar-vertical-label">Interação</div>
+                                    <div class="col ps-0">
+                                        <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-- Usuário -->                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pe-0 ps-2"
-                                id="navbarDropdownUser" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <div class="avatar avatar-xl">
-                                    <img class="rounded-circle"
-                                        src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" />
-                                </div>
-                            </a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
-                                aria-labelledby="navbarDropdownUser">
-                                <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                    <span class="text-warning text-center">{{ Auth::user()->name }}</span>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Perfil</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Logout</a>
-                                </div>
-                            </div>
-                        </li>
+                                <a class="nav-link" href="{{ route('chat.index') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-comments"></span></span>
+                                        <span class="nav-link-text ps-1">Chat IEQ</span>
+                                    </div>
+                                </a>
+                                <a class="nav-link" href="{{ route('pray') }}" role="button">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-icon"><span class="fas fa-pray"></span></span>
+                                        <span class="nav-link-text ps-1">Pedidos de Oração</span>
+                                    </div>
+                                </a>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+            <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg" style="display: none;">
+                <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard"
+                    aria-expanded="false" aria-label="Toggle Navigation">
+                    <span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
+                </button>
+                <!-- branding =======-->
+                <a class="navbar-brand me-1 me-sm-3" href="#">
+                    <div class="d-flex align-items-center">
+                        <img class="me-2" src="{{ asset('logo-taquara.png') }}" alt width="120" />
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+                    <!-- navegação =======-->
+                    <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
                     </ul>
-                </nav>
+                </div>
+                <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+                    <!-- Botão tema -->
+                    <li class="nav-item ps-2 pe-0">
+                        <div class="dropdown theme-control-dropdown">
+                            <a class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
+                                href="#" role="button" id="themeSwitchDropdown" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="fas fa-sun fs-7" data-fa-transform="shrink-2"
+                                    data-theme-dropdown-toggle-icon="light"></span>
+                                <span class="fas fa-moon fs-7" data-fa-transform="shrink-3"
+                                    data-theme-dropdown-toggle-icon="dark"></span>
+                                <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2"
+                                    data-theme-dropdown-toggle-icon="auto"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
+                                aria-labelledby="themeSwitchDropdown">
+                                <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                                    <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                        value="light" data-theme-control="theme">
+                                        <span class="fas fa-sun"></span>Light<span
+                                            class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
+                                    </button>
+                                    <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                        value="dark" data-theme-control="theme">
+                                        <span class="fas fa-moon" data-fa-transform></span>
+                                        Dark<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
+                                    </button>
+                                    <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                        value="auto" data-theme-control="theme">
+                                        <span class="fas fa-adjust" data-fa-transform></span>
+                                        Auto<span
+                                            class="fas fa-check dropdown-check-icon ms-auto text-600"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Notificações -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
+                            id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"
+                            data-hide-on-body-scroll="data-hide-on-body-scroll"><span class="fas fa-bell"
+                                data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
+                        <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
+                            aria-labelledby="navbarDropdownNotification">
+                            <div class="card card-notification shadow-none">
+                                <div class="card-header">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col-auto">
+                                            <h6 class="card-header-title mb-0">Notificações</h6>
+                                        </div>
+                                        <div class="col-auto ps-0 ps-sm-3">
+                                            <a class="card-link fw-normal" href="#">
+                                                Marcar todas como lidas
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scrollbar-overlay" style="max-height:19rem">
+                                    <div class="list-group list-group-flush fw-normal fs-10">
+                                        <div class="list-group-title border-bottom">NEW</div>
+                                        <div class="list-group-item">
+                                            <a class="notification notification-flush notification-unread"
+                                                href="#!">
+                                                <div class="notification-avatar">
+                                                    <div class="avatar avatar-2xl me-3">
+                                                        <img class="rounded-circle"
+                                                            src="{{ asset('') }}assets/img/team/1-thumb.png"
+                                                            alt />
+                                                    </div>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <p class="mb-1">
+                                                        <strong>Mariazinha Exemplo</strong>
+                                                        respondeu ao seu:
+                                                        "Olá, pessoal! 😍"
+                                                    </p>
+                                                    <span class="notification-time">
+                                                        <span class="me-2" role="img" aria-label="Emoji">
+                                                            💬
+                                                        </span>Agora
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center border-top">
+                                    <a class="card-link d-block" href="#">
+                                        Ver todos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Usuário -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar avatar-xl">
+                                <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
+                                    alt="{{ Auth::user()->name }}" />
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
+                            aria-labelledby="navbarDropdownUser">
+                            <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                                <center>
+                                    <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                </center>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('home')}}">
+                                    <i class="fas fa-house-user"></i> Meu Painel
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('profile')}}">
+                                    <i class="fas fa-id-card-alt"></i> Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('logout')}}"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
             <div class="content">
                 <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
-                    <button 
-                        class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarVerticalCollapse"
-                        aria-controls="navbarVerticalCollapse"
-                        aria-expanded="false"
-                        aria-label="Toggle Navigation">
+                    <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse"
+                        aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
                     </button>
                     <!-- branding =======-->
                     <a class="navbar-brand me-1 me-sm-3" href="#">
                         <div class="d-flex align-items-center">
-                            <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
+                            <img class="me-2" src="{{ asset('logo-taquara.png') }}" alt width="120" />
                         </div>
                     </a>
                     <ul class="navbar-nav align-items-center d-none d-lg-block">
                         <li class="nav-item"></li>
                     </ul>
-                    <ul
-                        class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+                    <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
                         <!-- tema =======-->
                         <li class="nav-item ps-2 pe-0">
                             <div class="dropdown theme-control-dropdown">
-                                <a
-                                    class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
-                                    href="#" role="button"
-                                    id="themeSwitchDropdown"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="fas fa-sun fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="light"></span>
-                                    <span class="fas fa-moon fs-7" data-fa-transform="shrink-3" data-theme-dropdown-toggle-icon="dark"></span>
-                                    <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2" data-theme-dropdown-toggle-icon="auto"></span>
+                                <a class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
+                                    href="#" role="button" id="themeSwitchDropdown" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="fas fa-sun fs-7" data-fa-transform="shrink-2"
+                                        data-theme-dropdown-toggle-icon="light"></span>
+                                    <span class="fas fa-moon fs-7" data-fa-transform="shrink-3"
+                                        data-theme-dropdown-toggle-icon="dark"></span>
+                                    <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2"
+                                        data-theme-dropdown-toggle-icon="auto"></span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3" aria-labelledby="themeSwitchDropdown">
+                                <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
+                                    aria-labelledby="themeSwitchDropdown">
                                     <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="light" data-theme-control="theme">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="light" data-theme-control="theme">
                                             <span class="fas fa-sun"></span>
                                             Light
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
                                         </button>
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="dark" data-theme-control="theme">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="dark" data-theme-control="theme">
                                             <span class="fas fa-moon" data-fa-transform></span>
                                             Dark
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
                                         </button>
-                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button" value="auto" data-theme-control="theme">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="auto" data-theme-control="theme">
                                             <span class="fas fa-adjust" data-fa-transform></span>
                                             Auto
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
@@ -831,19 +671,17 @@
                                 </div>
                             </div>
                         </li>
-                        
-                        <!-- notificações VERDADEIRO!! =======-->
+
+                        <!-- notificações?? =======-->
                         <li class="nav-item dropdown">
-                            <a
-                                class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
-                                id="navbarDropdownNotification"
-                                role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
+                                id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"
                                 data-hide-on-body-scroll="data-hide-on-body-scroll">
-                                <span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span>
+                                <span class="fas fa-bell" data-fa-transform="shrink-6"
+                                    style="font-size: 33px;"></span>
                             </a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
+                            <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
                                 aria-labelledby="navbarDropdownNotification">
                                 <div class="card card-notification shadow-none">
                                     <div class="card-header">
@@ -852,48 +690,41 @@
                                                 <h6 class="card-header-title mb-0">Notificações</h6>
                                             </div>
                                             <div class="col-auto ps-0 ps-sm-3">
-                                                <a class="card-link fw-normal" href="#">Marcar tudo como visto</a>
+                                                <a class="card-link fw-normal" href="#">
+                                                    Marcar tudo como visto
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="scrollbar-overlay"
-                                        style="max-height:19rem">
-                                        <div
-                                            class="list-group list-group-flush fw-normal fs-10">
-                                            <div
-                                                class="list-group-title border-bottom">NEW</div>
+                                    <div class="scrollbar-overlay" style="max-height:19rem">
+                                        <div class="list-group list-group-flush fw-normal fs-10">
+                                            <div class="list-group-title border-bottom">NEW</div>
                                             <div class="list-group-item">
-                                                <a
-                                                    class="notification notification-flush notification-unread"
+                                                <a class="notification notification-flush notification-unread"
                                                     href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-2xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="{{asset('')}}assets/img/team/1-thumb.png"
+                                                    <div class="notification-avatar">
+                                                        <div class="avatar avatar-2xl me-3">
+                                                            <img class="rounded-circle"
+                                                                src="{{ asset('') }}assets/img/team/1-thumb.png"
                                                                 alt />
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="notification-body">
+                                                    <div class="notification-body">
                                                         <p class="mb-1">
                                                             <strong>Maria Exemplo</strong>
                                                             respondeu ao seu:
-                                                            "Olá, pessoal!😍"</p>
+                                                            "Olá, pessoal!😍"
+                                                        </p>
                                                         <span class="notification-time">
-                                                            <span class="me-2" role="img"
-                                                                aria-label="Emoji">💬
+                                                            <span class="me-2" role="img" aria-label="Emoji">💬
                                                             </span>Agora
                                                         </span>
                                                     </div>
                                                 </a>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="card-footer text-center border-top">
+                                    <div class="card-footer text-center border-top">
                                         <a class="card-link d-block" href="#">
                                             Ver tudo
                                         </a>
@@ -901,31 +732,38 @@
                                 </div>
                             </div>
                         </li>
-                        
+
                         <!-- usuário =======-->
                         <li class="nav-item dropdown">
-                            <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-xl">
-                                    <img 
-                                        class="rounded-circle" 
-                                        src="{{ Auth::user()->avatar_url }}" 
+                                    <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
                                         alt="{{ Auth::user()->name }}" />
                                 </div>
                             </a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
+                            <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
                                 aria-labelledby="navbarDropdownUser">
                                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                    <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                    <center>
+                                        <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                    </center>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-id-card-alt"></i> Perfil</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        <i class="fas fa-house-user"></i> Meu Painel
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <i class="fas fa-id-card-alt"></i> Perfil
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt"></i> Sair
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -934,19 +772,11 @@
                     </ul>
                 </nav>
 
-                <nav
-                    class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg"
-                    style="display: none;"
-                    data-move-target="#navbarVerticalNav"
-                    data-navbar-top="combo">
-                    <button
-                        class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarVerticalCollapse"
-                        aria-controls="navbarVerticalCollapse"
-                        aria-expanded="false"
-                        aria-label="Toggle Navigation">
+                <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg" style="display: none;"
+                    data-move-target="#navbarVerticalNav" data-navbar-top="combo">
+                    <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse"
+                        aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggle-icon">
                             <span class="toggle-line"></span>
                         </span>
@@ -954,74 +784,50 @@
                     <!-- branding =======-->
                     <a class="navbar-brand me-1 me-sm-3" href="#">
                         <div class="d-flex align-items-center">
-                            <img class="me-2" src="{{asset('logo-taquara.png')}}" alt width="120" />
+                            <img class="me-2" src="{{ asset('logo-taquara.png') }}" alt width="120" />
                         </div>
                     </a>
 
                     <!-- navegação =======-->
-                    <div class="collapse navbar-collapse scrollbar"
-                        id="navbarStandard">
-                        <ul class="navbar-nav"
-                            data-top-nav-dropdowns="data-top-nav-dropdowns">
+                    <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+                        <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
                         </ul>
                     </div>
 
-                    <ul
-                        class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+                    <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
                         <!-- tema =======-->
                         <li class="nav-item ps-2 pe-0">
                             <div class="dropdown theme-control-dropdown">
-                                <a
-                                    class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
-                                    href="#" role="button"
-                                    id="themeSwitchDropdown"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span
-                                        class="fas fa-sun fs-7"
-                                        data-fa-transform="shrink-2"
+                                <a class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0"
+                                    href="#" role="button" id="themeSwitchDropdown" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="fas fa-sun fs-7" data-fa-transform="shrink-2"
                                         data-theme-dropdown-toggle-icon="light">
                                     </span>
-                                    <span
-                                        class="fas fa-moon fs-7"
-                                        data-fa-transform="shrink-3"
+                                    <span class="fas fa-moon fs-7" data-fa-transform="shrink-3"
                                         data-theme-dropdown-toggle-icon="dark">
                                     </span>
-                                    <span
-                                        class="fas fa-adjust fs-7"
-                                        data-fa-transform="shrink-2"
+                                    <span class="fas fa-adjust fs-7" data-fa-transform="shrink-2"
                                         data-theme-dropdown-toggle-icon="auto">
                                     </span>
                                 </a>
-                                <div
-                                    class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
+                                <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3"
                                     aria-labelledby="themeSwitchDropdown">
-                                    <div
-                                        class="bg-white dark__bg-1000 rounded-2 py-2">
-                                        <button
-                                            class="dropdown-item d-flex align-items-center gap-2"
-                                            type="button"
-                                            value="light"
-                                            data-theme-control="theme">
+                                    <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="light" data-theme-control="theme">
                                             <span class="fas fa-sun"></span>
                                             Light
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
                                         </button>
-                                        <button
-                                            class="dropdown-item d-flex align-items-center gap-2"
-                                            type="button"
-                                            value="dark"
-                                            data-theme-control="theme">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="dark" data-theme-control="theme">
                                             <span class="fas fa-moon" data-fa-transform></span>
                                             Dark
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
                                         </button>
-                                        <button
-                                            class="dropdown-item d-flex align-items-center gap-2"
-                                            type="button"
-                                            value="auto"
-                                            data-theme-control="theme">
+                                        <button class="dropdown-item d-flex align-items-center gap-2" type="button"
+                                            value="auto" data-theme-control="theme">
                                             <span class="fas fa-adjust" data-fa-transform></span>
                                             Auto
                                             <span class="fas fa-check dropdown-check-icon ms-auto text-600"></span>
@@ -1033,231 +839,122 @@
 
                         <!-- notificações =======-->
                         <li class="nav-item dropdown">
-                            <a
-                                class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
-                                id="navbarDropdownNotification"
-                                role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
+                                id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"
                                 data-hide-on-body-scroll="data-hide-on-body-scroll">
-                                <span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span>
+                                <span class="fas fa-bell" data-fa-transform="shrink-6"
+                                    style="font-size: 33px;"></span>
                             </a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
+                            <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
                                 aria-labelledby="navbarDropdownNotification">
-                                <div
-                                    class="card card-notification shadow-none">
+                                <div class="card card-notification shadow-none">
                                     <div class="card-header">
-                                        <div
-                                            class="row justify-content-between align-items-center">
+                                        <div class="row justify-content-between align-items-center">
                                             <div class="col-auto">
-                                                <h6
-                                                    class="card-header-title mb-0">Notifications</h6>
+                                                <h6 class="card-header-title mb-0">Notificações</h6>
                                             </div>
-                                            <div
-                                                class="col-auto ps-0 ps-sm-3"><a
-                                                    class="card-link fw-normal"
-                                                    href="#">Mark all as
-                                                    read</a></div>
+                                            <div class="col-auto ps-0 ps-sm-3">
+                                                <a class="card-link fw-normal" href="#">
+                                                    Marcar todas como vistas
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="scrollbar-overlay"
-                                        style="max-height:19rem">
-                                        <div
-                                            class="list-group list-group-flush fw-normal fs-10">
-                                            <div
-                                                class="list-group-title border-bottom">NEW</div>
+                                    <div class="scrollbar-overlay" style="max-height:19rem">
+                                        <div class="list-group list-group-flush fw-normal fs-10">
+                                            <div class="list-group-title border-bottom">NEW</div>
+
+                                            <!-- Exemplo de notificação -->
                                             <div class="list-group-item">
-                                                <a
-                                                    class="notification notification-flush notification-unread"
+                                                <a class="notification notification-flush notification-unread"
                                                     href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-2xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="assets/img/team/1-thumb.png"
-                                                                alt />
+                                                    <div class="notification-avatar">
+                                                        <div class="avatar avatar-2xl me-3">
+                                                            <img class="rounded-circle"
+                                                                src="{{asset('assets/img/team/1-thumb.png')}}" alt />
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p
-                                                            class="mb-1"><strong>Emma
-                                                                Watson</strong>
-                                                            replied to your
-                                                            comment :
-                                                            "Hello world 😍"</p>
-                                                        <span
-                                                            class="notification-time"><span
-                                                                class="me-2"
-                                                                role="img"
-                                                                aria-label="Emoji">💬</span>Just
-                                                            now</span>
+                                                    <div class="notification-body">
+                                                        <p class="mb-1">
+                                                            <strong>Maria Fulaninha</strong>
+                                                            respondeu seu comentário:
+                                                            "Valeu!😍"
+                                                        </p>
+                                                        <span class="notification-time">
+                                                            <span class="me-2" role="img" aria-label="Emoji">💬
+                                                            </span>
+                                                            Agora
+                                                        </span>
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="list-group-item">
-                                                <a
-                                                    class="notification notification-flush notification-unread"
+                                                <a class="notification notification-flush notification-unread"
                                                     href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-2xl me-3">
-                                                            <div
-                                                                class="avatar-name rounded-circle"><span>AB</span>
+                                                    <div class="notification-avatar">
+                                                        <div class="avatar avatar-2xl me-3">
+                                                            <div class="avatar-name rounded-circle"><span>FQ</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p
-                                                            class="mb-1"><strong>Albert
-                                                                Brooks</strong>
-                                                            reacted to
-                                                            <strong>Mia
-                                                                Khalifa's</strong>
-                                                            status
+                                                    <div class="notification-body">
+                                                        <p class="mb-1">
+                                                            <strong>Fulano Qualquer</strong>
+                                                            reagiu ao status de
+                                                            <strong>Maria Fulaninha</strong>
                                                         </p>
-                                                        <span
-                                                            class="notification-time"><span
-                                                                class="me-2 fab fa-gratipay text-danger"></span>9hr</span>
+                                                        <span class="notification-time">
+                                                            <span class="me-2 fab fa-gratipay text-danger"></span>
+                                                            9hr
+                                                        </span>
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div
-                                                class="list-group-title border-bottom">EARLIER</div>
-                                            <div class="list-group-item">
-                                                <a
-                                                    class="notification notification-flush"
-                                                    href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-2xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="assets/img/icons/weather-sm.jpg"
-                                                                alt />
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p class="mb-1">The
-                                                            forecast today
-                                                            shows a low of
-                                                            20&#8451; in
-                                                            California. See
-                                                            today's
-                                                            weather.</p>
-                                                        <span
-                                                            class="notification-time"><span
-                                                                class="me-2"
-                                                                role="img"
-                                                                aria-label="Emoji">🌤️</span>1d</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <a
-                                                    class="border-bottom-0 notification-unread  notification notification-flush"
-                                                    href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="assets/img/logos/oxford.png"
-                                                                alt />
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p
-                                                            class="mb-1"><strong>University
-                                                                of
-                                                                Oxford</strong>
-                                                            created an event
-                                                            :
-                                                            "Causal Inference Hilary 2019"</p>
-                                                        <span
-                                                            class="notification-time"><span
-                                                                class="me-2"
-                                                                role="img"
-                                                                aria-label="Emoji">✌️</span>1w</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <a
-                                                    class="border-bottom-0 notification notification-flush"
-                                                    href="#!">
-                                                    <div
-                                                        class="notification-avatar">
-                                                        <div
-                                                            class="avatar avatar-xl me-3">
-                                                            <img
-                                                                class="rounded-circle"
-                                                                src="assets/img/team/10.jpg"
-                                                                alt />
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="notification-body">
-                                                        <p
-                                                            class="mb-1"><strong>James
-                                                                Cameron</strong>
-                                                            invited to join
-                                                            the group:
-                                                            United Nations
-                                                            International
-                                                            Children's
-                                                            Fund</p>
-                                                        <span
-                                                            class="notification-time"><span
-                                                                class="me-2"
-                                                                role="img"
-                                                                aria-label="Emoji">🙋‍</span>2d</span>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                            <div class="list-group-title border-bottom">Anteriores</div>
+                                            
                                         </div>
                                     </div>
-                                    <div
-                                        class="card-footer text-center border-top"><a
-                                            class="card-link d-block"
-                                            href="app/social/notifications.html">View
-                                            all</a></div>
+                                    <div class="card-footer text-center border-top">
+                                        <a class="card-link d-block" href="#">
+                                            Ver todas
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </li>
-                        
+
                         <!-- usuário =======-->
                         <li class="nav-item dropdown">
-                            <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-xl">
-                                    <img 
-                                        class="rounded-circle" 
-                                        src="{{ Auth::user()->avatar_url }}" 
+                                    <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
                                         alt="{{ Auth::user()->name }}" />
                                 </div>
                             </a>
-                            <div
-                                class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
+                            <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
                                 aria-labelledby="navbarDropdownUser">
                                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                    <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                    <center>
+                                        <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                    </center>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-id-card-alt"></i> Perfil</a>
+                                    <a class="dropdown-item" href="{{route('home')}}">
+                                        <i class="fas fa-id-card-alt"></i> Meu Painel
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{route('profile')}}">
+                                        <i class="fas fa-id-card-alt"></i> Meu Perfil
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt"></i> Sair
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -1339,17 +1036,16 @@
                             </div>
                             <div class="modal-body py-4 px-5">
                                 <form>
-                                    <div class="mb-3"><label class="form-label"
-                                            for="modal-auth-name">Nome completo</label><input class="form-control"
-                                            type="text" autocomplete="on" id="modal-auth-name" /></div>
+                                    <div class="mb-3"><label class="form-label" for="modal-auth-name">Nome
+                                            completo</label><input class="form-control" type="text"
+                                            autocomplete="on" id="modal-auth-name" /></div>
                                     <div class="mb-3"><label class="form-label" for="modal-auth-email">E-mail
                                             address</label><input class="form-control" type="email"
                                             autocomplete="on" id="modal-auth-email" /></div>
                                     <div class="row gx-2">
                                         <div class="mb-3 col-sm-6"><label class="form-label"
-                                                for="modal-auth-password">Senha</label><input
-                                                class="form-control" type="password" autocomplete="on"
-                                                id="modal-auth-password" /></div>
+                                                for="modal-auth-password">Senha</label><input class="form-control"
+                                                type="password" autocomplete="on" id="modal-auth-password" /></div>
                                         <div class="mb-3 col-sm-6"><label class="form-label"
                                                 for="modal-auth-confirm-password">Confirmação de
                                                 Senha</label><input class="form-control" type="password"
@@ -1359,11 +1055,12 @@
                                             id="modal-auth-register-checkbox" /><label class="form-label"
                                             for="modal-auth-register-checkbox">I
                                             accept the <a href="#!">termos
-                                            </a>e <a class="white-space-nowrap" href="#!">política de privacidade</a></label></div>
+                                            </a>e <a class="white-space-nowrap" href="#!">política de
+                                                privacidade</a></label></div>
                                     <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
                                             type="submit" name="submit">Cadastrar</button></div>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -1372,10 +1069,10 @@
     </main>
     <!-- ===============================================--><!--    End of Main Content--><!-- ===============================================-->
 
-   
+
     <!-- ===============================================--><!--    JavaScripts--><!-- ===============================================-->
     <script src="{{ asset('') }}vendors/popper/popper.min.js"></script>
-    <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script> --}}
     <script src="{{ asset('') }}vendors/anchorjs/anchor.min.js"></script>
     <script src="{{ asset('') }}vendors/is/is.min.js"></script>
     <script src="{{ asset('') }}vendors/swiper/swiper-bundle.min.js"></script>

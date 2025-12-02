@@ -62,18 +62,68 @@
                             </ul>
 
                             <div class="mb-3 mt-2">
-                                <a href="{{route('admin.groups.edit', $group->id)}}" class="btn btn-info">
+                                <a href="{{ route('admin.groups.edit', $group->id) }}" class="btn btn-info"
+                                    title="Atualizar Grupo">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="{{route('admin.groups.destroy', $group->id)}}" class="btn btn-danger"
+                                <a href="{{ route('admin.groups.destroy', $group->id) }}" class="btn btn-danger"
+                                    title="Deletar Grupo"
                                     onclick="event.preventDefault();
                                                      document.getElementById('delete-form').submit();">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
-                                <form  id="delete-form" action="{{ route('admin.groups.destroy', $group->id) }}" method="POST" class="d-none">
+                                <form id="delete-form" action="{{ route('admin.groups.destroy', $group->id) }}"
+                                    method="POST" class="d-none">
                                     @method('DELETE')
                                     @csrf
                                 </form>
+                                <a href="{{ route('groups_members.store') }}" class="btn btn-success"
+                                    title="Acrescentar membros" data-bs-toggle="modal"
+                                    data-bs-target="#addMemberModal-{{ $group->id }}">
+                                    <i class="fas fa-user-plus"></i>
+                                </a>
+                                <!-- MODAL DE ADICIONAR MEMBRO (Específica para este ID de departamento) -->
+                                <div class="modal fade" id="addMemberModal-{{ $group->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="{{ route('groups_members.store') }}" method="POST">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Adicionar ao {{ $group->name }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Selecione o Membro</label>
+                                                        <select name="user_id" class="form-select" required>
+                                                            <option value="">Escolha um usuário...</option>
+                                                            @foreach ($users as $user)
+                                                                @if ()
+                                                                    
+                                                                @endif
+                                                                <option value="{{ $user->id }}">
+                                                                    {{ $user->name }} ({{ $user->email }})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <small class="text-muted">
+                                                            Certifique-se de não selecionar alguém que já faz parte da
+                                                            equipe.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FIM DA MODAL -->
                             </div>
                         </div>
                     </div>

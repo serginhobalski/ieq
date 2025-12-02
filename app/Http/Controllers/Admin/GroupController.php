@@ -15,8 +15,9 @@ class GroupController extends Controller
     public function index()
     {
         // Traz os grupos com o nome do líder (Eager Loading para performance)
-        $groups = Group::with('leader')->get();
-        return view('admin.groups.index', compact('groups'));
+        $groups = Group::with('leader', 'members')->get();
+        $users = User::with('groups')->get();
+        return view('admin.groups.index', compact('groups', 'users'));
     }
 
     /**

@@ -31,4 +31,6 @@ class Group extends Model
                     ->withPivot('is_co_leader')
                     ->withTimestamps();
     }
+
+    
 }
