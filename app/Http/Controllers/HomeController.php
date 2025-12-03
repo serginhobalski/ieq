@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection; // Use se $data for um array e você quiser convertê-lo
 
 class HomeController extends Controller
 {
@@ -103,17 +105,36 @@ class HomeController extends Controller
         return view('home.pray');
     }
 
-    public function debq()
+    public function debq(Request $request)
     {
-        $title = 'Escola Bíblica (DEBQ)'; 
-        $courses = Course::with('lessons')->where('category', 'debq')->orderBy('title', 'asc')->get();
-        return view('home.debq', compact('courses','title'));
+        $title = 'Escola Bíblica (DEBQ)';
+        // 1. Usar ->paginate(9) em vez de ->get()
+        // Isso garante que apenas 9 cursos sejam carregados por vez
+        $perPage = 9; // Defina quantos cursos por página você deseja
+        
+        $courses = Course::with('lessons')
+            ->where('category', 'debq')
+            ->orderBy('title', 'asc')
+            ->paginate($perPage); // <-- MUDANÇA PRINCIPAL
+
+        // O $courses agora é um objeto LengthAwarePaginator
+
+        return view('home.debq', compact('courses', 'title'));
     }
 
     public function trilho()
     {
         $title = 'Trilho de Crescimento';
-        $courses = Course::with('lessons')->where('category', 'trilho')->orderBy('title', 'asc')->get();
+        // 1. Usar ->paginate(9) em vez de ->get()
+        // Isso garante que apenas 9 cursos sejam carregados por vez
+        $perPage = 9; // Defina quantos cursos por página você deseja
+        
+        $courses = Course::with('lessons')
+            ->where('category', 'debq')
+            ->orderBy('title', 'asc')
+            ->paginate($perPage); // <-- MUDANÇA PRINCIPAL
+
+        // O $courses agora é um objeto LengthAwarePaginator;
         return view('home.trilho', compact('courses','title'));
     }
 

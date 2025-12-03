@@ -100,9 +100,6 @@
                                                         <select name="user_id" class="form-select" required>
                                                             <option value="">Escolha um usuário...</option>
                                                             @foreach ($users as $user)
-                                                                @if ()
-                                                                    
-                                                                @endif
                                                                 <option value="{{ $user->id }}">
                                                                     {{ $user->name }} ({{ $user->email }})
                                                                 </option>
