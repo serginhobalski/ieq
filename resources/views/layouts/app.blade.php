@@ -10,8 +10,7 @@
     <title>IEQ | @yield('title')</title>
 
     <!-- ===============================================--><!--    Favicons--><!-- ===============================================-->
-    <script type="text/javascript" src="{{ asset('') }}js/local.js"></script>
-    <script type="text/javascript" src="{{ asset('') }}js/user.js"></script>
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icon.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icon.png') }}">
@@ -25,7 +24,6 @@
     <!-- ===============================================--><!--    Stylesheets--><!-- ===============================================-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="{{ asset('') }}vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
-    <link href="{{ asset('') }}vendors/" rel="stylesheet">
     <link href="{{ asset('') }}vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="{{ asset('') }}vendors/prism/prism-okaidia.css" rel="stylesheet">
     <link
@@ -52,7 +50,7 @@
         }
     </script>
     <!-- Scripts 'resources/sass/app.scss',  -->
-    @vite(['resources/js/app.js'])
+    {{-- @vite(['resources/js/app.js']) --}}
 </head>
 
 <body>
@@ -1036,6 +1034,7 @@
                                         class="btn-close position-absolute top-0 end-0 mt-2 me-2"
                                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                             </div>
+                            
                             <div class="modal-body py-4 px-5">
                                 <form>
                                     <div class="mb-3"><label class="form-label" for="modal-auth-name">Nome
@@ -1074,7 +1073,7 @@
 
     <!-- ===============================================--><!--    JavaScripts--><!-- ===============================================-->
     <script src="{{ asset('') }}vendors/popper/popper.min.js"></script>
-    {{-- <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script> --}}
+    <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script>
     <script src="{{ asset('') }}vendors/anchorjs/anchor.min.js"></script>
     <script src="{{ asset('') }}vendors/is/is.min.js"></script>
     <script src="{{ asset('') }}vendors/swiper/swiper-bundle.min.js"></script>
@@ -1083,7 +1082,6 @@
     <script src="{{ asset('') }}vendors/fullcalendar/index.global.min.js"></script>
     <script src="{{ asset('') }}vendors/flatpickr/flatpickr.min.js"></script>
     <script src="{{ asset('') }}vendors/dayjs/dayjs.min.js"></script>
-    <script src="{{ asset('') }}vendors/"></script>
     <script src="{{ asset('') }}vendors/fontawesome/all.min.js"></script>
     <script src="{{ asset('') }}vendors/lodash/lodash.min.js"></script>
     <script src="{{ asset('') }}vendors/list.js/list.min.js"></script>

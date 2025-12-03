@@ -2882,23 +2882,23 @@ var hideOnCollapseInit = function hideOnCollapseInit() {
 /*                           Icon copy to clipboard                           */
 /* -------------------------------------------------------------------------- */
 
-var iconCopiedInit = function iconCopiedInit() {
-  var iconList = document.getElementById('icon-list');
-  var iconCopiedToast = document.getElementById('icon-copied-toast');
-  var iconCopiedToastInstance = new window.bootstrap.Toast(iconCopiedToast);
-  if (iconList) {
-    iconList.addEventListener('click', function (e) {
-      var el = e.target;
-      if (el.tagName === 'INPUT') {
-        el.select();
-        el.setSelectionRange(0, 99999);
-        document.execCommand('copy');
-        iconCopiedToast.querySelector('.toast-body').innerHTML = "<span class=\"fw-black\">Copied:</span> <code>".concat(el.value, "</code>");
-        iconCopiedToastInstance.show();
-      }
-    });
-  }
-};
+// var iconCopiedInit = function iconCopiedInit() {
+//   var iconList = document.getElementById('icon-list');
+//   var iconCopiedToast = document.getElementById('icon-copied-toast');
+  // var iconCopiedToastInstance = new window.bootstrap.Toast(iconCopiedToast);
+//   if (iconList) {
+//     iconList.addEventListener('click', function (e) {
+//       var el = e.target;
+//       if (el.tagName === 'INPUT') {
+//         el.select();
+//         el.setSelectionRange(0, 99999);
+//         document.execCommand('copy');
+//         iconCopiedToast.querySelector('.toast-body').innerHTML = "<span class=\"fw-black\">Copied:</span> <code>".concat(el.value, "</code>");
+//         iconCopiedToastInstance.show();
+//       }
+//     });
+//   }
+// };
 
 /* -------------------------------------------------------------------------- */
 /*                                   Inputmask                                */
@@ -5020,9 +5020,9 @@ var toastInit = function toastInit() {
 var tooltipInit = function tooltipInit() {
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new window.bootstrap.Tooltip(tooltipTriggerEl, {
-      trigger: 'hover'
-    });
+    // return new window.bootstrap.Tooltip(tooltipTriggerEl, {
+    //   trigger: 'hover'
+    // });
   });
 };
 
@@ -14173,7 +14173,7 @@ docReady(returningCustomerRateInit);
 docReady(candleChartInit);
 docReady(grossRevenueChartInit);
 docReady(scrollbarInit);
-docReady(iconCopiedInit);
+// docReady(iconCopiedInit);
 docReady(reportForThisWeekInit);
 docReady(basicEchartsInit);
 docReady(chartScatter);

@@ -28,18 +28,23 @@ class CourseController extends Controller
     // Salvar Curso
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|in:ebd,trilho',
             'description' => 'nullable|string',
+            'is_published' => 'nullable|string',
             'cover' => 'nullable|image|max:2048'
         ]);
-
-        if ($request->hasFile('cover')) {
-            $data['cover_path'] = $request->file('cover')->store('courses', 'public');
+        if (!isset($data['is_published'])) {
+            $data['is_published'] = 0;
+        } else {
+            $data['is_published'] = 1;
         }
 
-        $data['is_published'] = $request->has('is_published'); // Checkbox
+        if ($request->hasFile('cover')) {
+            $data['cover_image'] = $request->file('cover')->store('courses', 'public');
+        }
 
         $course = Course::create($data);
 
