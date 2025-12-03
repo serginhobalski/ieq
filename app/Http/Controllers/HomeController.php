@@ -120,7 +120,7 @@ class HomeController extends Controller
     public function devotionals()
     {
         $title = 'Devocionais';
-        return view('home.devotionals', compact('courses'));
+        return view('home.devotionals');
     }
 
     public function profile()

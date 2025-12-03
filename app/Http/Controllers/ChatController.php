@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
 use App\Models\ChatMessage;
+use App\Models\User;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +14,13 @@ class ChatController extends Controller
     // Exibe a tela do chat
     public function index()
     {
-        return view('chat.index');
+        $user_id = Auth::id();
+        // Carrega os grupos do usuário logado
+        $myGroups = Group::whereHas('members', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+        
+        return view('chat.index', compact('myGroups'));
     }
 
     // API para carregar mensagens antigas (Histórico)

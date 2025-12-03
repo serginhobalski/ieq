@@ -452,7 +452,7 @@
                                         <span class="nav-link-text ps-1">Chat IEQ</span>
                                     </div>
                                 </a>
-                                <a class="nav-link" href="{{ route('pray') }}" role="button">
+                                <a class="nav-link" href="{{ route('prayers.index') }}" role="button">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon"><span class="fas fa-pray"></span></span>
                                         <span class="nav-link-text ps-1">Pedidos de Oração</span>
@@ -583,7 +583,7 @@
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-xl">
                                 <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
-                                    alt="{{ Auth::user()->name }}" />
+                                    alt="{{ explode(' ', Auth::user()->name)[0] }}" />
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
@@ -739,7 +739,7 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-xl">
                                     <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}"
-                                        alt="{{ Auth::user()->name }}" />
+                                        alt="{{ explode(' ', Auth::user()->name)[0] }}" />
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
@@ -924,7 +924,7 @@
                             </div>
                         </li>
 
-                        <!-- usuário =======-->
+                        <!-- usuário VERDADEIRO =======-->
                         <li class="nav-item dropdown">
                             <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -937,7 +937,9 @@
                                 aria-labelledby="navbarDropdownUser">
                                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
                                     <center>
-                                        <span class="text-warning text-center">{{ Auth::user()->name }}</span>
+                                        <span class="text-warning text-center">
+                                            {{ explode(' ', Auth::user()->name)[0] }}
+                                        </span>
                                     </center>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{route('home')}}">

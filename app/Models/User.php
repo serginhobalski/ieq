@@ -74,6 +74,9 @@ class User extends Authenticatable
 
     // Em User.php:
     public function groups() {
-        return $this->belongsToMany(Group::class, 'group_user');
+        // 'group_user' é a tabela pivô que criamos nos passos anteriores
+        return $this->belongsToMany(Group::class, 'group_user')
+                    ->withPivot('is_co_leader')
+                    ->withTimestamps();
     }
 }

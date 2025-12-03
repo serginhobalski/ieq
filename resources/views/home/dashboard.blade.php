@@ -11,14 +11,30 @@
 
 
 @section('content')
+    <div class="card mt-4">
+        <center class="pt-2 pb-2">
+            <a href="{{route('events')}}" class="btn btn-primary mt-2">
+                <i class="fas fa-calendar-alt"></i> Eventos
+            </a>
+            <a href="{{route('groups.index')}}" class="btn btn-primary mt-2">
+                <i class="fas fa-share"></i> Grupos
+            </a>
+            <a href="{{route('bible.index')}}" class="btn btn-primary mt-2">
+                <i class="fas fa-bible"></i> Bíblia
+            </a>
+            <a href="{{route('chat.index')}}" class="btn btn-primary mt-2">
+                <i class="fas fa-comment"></i> Chat
+            </a>
+        </center>
+    </div>
     
     <div class="position-relative" data-bs-theme="light">
         <div class="bg-holder rounded-2" style="background-image:url({{ asset('') }}assets/video/beach.jpg);">
             <video class="bg-video"
                 autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline">
                 <source src="{{ asset('') }}assets/video/bg_video.mp4" type="video/mp4" />
-                {{-- <source src="{{ asset('') }}assets/video/beach.webm" type="video/webm" /> --}}
-            </video></div> <!--/.bg-holder-->
+            </video>
+        </div>
         <div class="position-relative vh-75 d-flex flex-center">
             <h1 class="text-white fw-light">
                 Esta é a sua <span class="typed-text fw-bold" 

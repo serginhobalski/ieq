@@ -46,11 +46,14 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
+    <!-- Scripts 'resources/sass/app.scss',  -->
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
     <!--    Main Content--><!-- ===============================================-->
     <main class="main" id="top">
+
         <!-- MENU TOPO ========================-->
         <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark"
             data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
@@ -189,18 +192,16 @@
                                     aria-labelledby="navbarDropdownUser">
                                     <div class="card shadow-none navbar-card-login">
                                         <div class="card-body fs-10 p-2 text-center">
-                                            <div class="mb-3">
-                                                <a class="btn btn-success" href="{{ url('home') }}">
+                                            <div class="mb-0">
+                                                <a class="dropdown-item" href="{{ url('home') }}">
                                                     <i class="fas fa-chalkboard-teacher"></i> Meu Painel
-                                                </a>                                                
-                                            </div>
-                                            <div class="mb-3">
-                                                <a class="btn btn-primary" href="{{ url('profile') }}">
+                                                </a>
+                                                <hr>                                              
+                                                <a class="dropdown-item" href="{{ url('profile') }}">
                                                     <i class="fas fa-id-card"></i> Meu Perfil
-                                                </a>                                                
-                                            </div>
-                                            <div class="mb-3">
-                                                <a class="btn btn-danger" href="{{ url('logout') }}">
+                                                </a>
+                                                <hr>                                                
+                                                <a class="dropdown-item" href="{{ url('logout') }}">
                                                     <i class="fas fa-sign-out-alt"></i> Sair
                                                 </a>                                                
                                             </div>
@@ -718,7 +719,7 @@
 
     <!-- ===============================================--><!--    JavaScripts--><!-- ===============================================-->
     <script src="{{ asset('') }}vendors/popper/popper.min.js"></script>
-    <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script> --}}
     <script src="{{ asset('') }}vendors/anchorjs/anchor.min.js"></script>
     <script src="{{ asset('') }}vendors/is/is.min.js"></script>
     <script src="{{ asset('') }}vendors/swiper/swiper-bundle.min.js"></script>

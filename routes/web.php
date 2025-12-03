@@ -27,7 +27,7 @@ Route::get('/volunteers', [HomeController::class, 'volunteers'])->name('voluntee
 Route::get('/debq', [HomeController::class, 'debq'])->name('debq');
 Route::get('/trilho', [HomeController::class, 'trilho'])->name('trilho');
 Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devotionals');
-Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
+// Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
 Route::middleware(['auth'])->group(function () {
     Route::get('/bible', [App\Http\Controllers\BibleController::class, 'index'])->name('bible.index');
     Route::resource('groups', App\Http\Controllers\GroupController::class);
@@ -38,6 +38,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/chat/send', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('chat.send');
     Route::post('/groups/{group}/join', [App\Http\Controllers\GroupMemberController::class, 'join'])->name('groups.join');
     Route::post('/groups/{group}/leave', [App\Http\Controllers\GroupMemberController::class, 'leave'])->name('groups.leave');
+    Route::get('/prayers', [App\Http\Controllers\PrayerController::class, 'index'])->name('prayers.index');
+    Route::post('/prayers', [App\Http\Controllers\PrayerController::class, 'store'])->name('prayers.store');
+    Route::delete('/prayers/{prayer}', [App\Http\Controllers\PrayerController::class, 'destroy'])->name('prayers.destroy');
+    Route::post('/prayers/{prayer}/pray', [App\Http\Controllers\PrayerController::class, 'togglePrayer'])->name('prayers.pray');
 });
 
 
