@@ -50,7 +50,7 @@
         }
     </script>
     <!-- Scripts 'resources/sass/app.scss',  -->
-    {{-- @vite(['resources/js/app.js']) --}}
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -1073,7 +1073,7 @@
 
     <!-- ===============================================--><!--    JavaScripts--><!-- ===============================================-->
     <script src="{{ asset('') }}vendors/popper/popper.min.js"></script>
-    <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('') }}vendors/bootstrap/bootstrap.min.js"></script> --}}
     <script src="{{ asset('') }}vendors/anchorjs/anchor.min.js"></script>
     <script src="{{ asset('') }}vendors/is/is.min.js"></script>
     <script src="{{ asset('') }}vendors/swiper/swiper-bundle.min.js"></script>
