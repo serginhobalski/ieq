@@ -26,7 +26,6 @@ Route::get('/events', [HomeController::class, 'events'])->name('events');
 Route::get('/volunteers', [HomeController::class, 'volunteers'])->name('volunteers');
 Route::get('/debq', [HomeController::class, 'debq'])->name('debq');
 Route::get('/trilho', [HomeController::class, 'trilho'])->name('trilho');
-Route::get('/devotionals', [HomeController::class, 'devotionals'])->name('devotionals');
 // Route::get('/pray', [HomeController::class, 'pray'])->name('pray');
 Route::middleware(['auth'])->group(function () {
     Route::get('/bible', [App\Http\Controllers\BibleController::class, 'index'])->name('bible.index');
@@ -42,6 +41,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/prayers', [App\Http\Controllers\PrayerController::class, 'store'])->name('prayers.store');
     Route::delete('/prayers/{prayer}', [App\Http\Controllers\PrayerController::class, 'destroy'])->name('prayers.destroy');
     Route::post('/prayers/{prayer}/pray', [App\Http\Controllers\PrayerController::class, 'togglePrayer'])->name('prayers.pray');
+    // Listagem e Leitura
+    Route::get('/devotionals', [App\Http\Controllers\DevotionalController::class, 'index'])->name('devotionals.index');
+    Route::get('/devotionals/read/{devotional:slug}', [App\Http\Controllers\DevotionalController::class, 'show'])->name('devotionals.show'); // Busca pelo Slug para URL bonita
+    
+    // Gestão (Criar/Apagar)
+    Route::get('/devotionals/create', [App\Http\Controllers\DevotionalController::class, 'create'])->name('devotionals.create');
+    Route::post('/devotionals', [App\Http\Controllers\DevotionalController::class, 'store'])->name('devotionals.store');
+    Route::delete('/devotionals/{devotional}', [App\Http\Controllers\DevotionalController::class, 'destroy'])->name('devotionals.destroy');
 });
 
 

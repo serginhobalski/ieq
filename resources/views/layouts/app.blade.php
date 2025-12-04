@@ -430,7 +430,7 @@
                                         <span class="nav-link-text ps-1">Trilho</span>
                                     </div>
                                 </a>
-                                <a class="nav-link" href="{{ route('devotionals') }}" role="button">
+                                <a class="nav-link" href="{{ route('devotionals.index') }}" role="button">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon"><span class="fas fa-book-reader"></span></span>
                                         <span class="nav-link-text ps-1">Deocionais</span>
