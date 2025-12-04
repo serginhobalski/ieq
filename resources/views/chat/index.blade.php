@@ -8,8 +8,8 @@
     <div class="card card-chat">
         <div class="card-body d-flex p-0 h-100">
 
-            {{-- 1. SIDEBAR (Esquerda) --}}
-            <div class="chat-sidebar border-end" style="background: #222222;">
+            {{-- 1. SIDEBAR (Esquerda)  style="background: #222222;"--}}
+            <div class="chat-sidebar border-end">
                 <div class="chat-sidebar-header p-3 border-bottom text-center">
                     <h6 class="mb-0 text-primary">Canais & Grupos</h6>
                 </div>
@@ -35,8 +35,8 @@
                             </div>
                         </div>
 
-                        {{-- Separador --}}
-                        <div class="p-2 text-center text-uppercase fs-11 fw-bold text-primary mt-2" style="background: #222222;">Meus GCs</div>
+                        {{-- Separador  style="background: #222222;"--}}
+                        <div class="p-2 text-center text-uppercase fs-11 fw-bold text-primary mt-2">Meus GCs</div>
 
                         {{-- Loop Grupos --}}
                         @forelse($myGroups as $group)
@@ -82,16 +82,16 @@
                     </div>
                 </div>
 
-                {{-- B. Corpo de Mensagens (Onde estava o problema) --}}
+                {{-- B. Corpo de Mensagens (Onde estava o problema)  background-color: #333333;--}}
                 {{-- Flex-grow-1 força ocupar todo o espaço disponível, overflow-y permite scroll --}}
                 <div class="chat-body p-3 flex-grow-1" id="messagesArea"
-                    style="overflow-y: auto; background-color: #333333;">
+                    style="overflow-y: auto;">
                     {{-- JS preenche aqui --}}
                 </div>
 
                 {{-- C. Editor (Input) --}}
-                {{-- Flex-shrink-0 impede que esta área seja esmagada --}}
-                <div class="chat-footer p-3 border-top bg-white d-flex align-items-center" style="flex-shrink: 0;">
+                {{-- Flex-shrink-0 impede que esta área seja esmagada bg-white --}}
+                <div class="chat-footer p-3 border-top d-flex align-items-center" style="flex-shrink: 0;">
                     <input type="text" id="messageInput" class="form-control border-0 bg-light me-2"
                         placeholder="Digite sua mensagem..." autocomplete="off" style="box-shadow: none;">
 
@@ -160,7 +160,7 @@
                 document.querySelectorAll('.chat-contact').forEach(el => el.classList.remove('active',
                     'bg-light'));
                 const btn = document.getElementById(`btn-${roomKey}`);
-                if (btn) btn.classList.add('active', 'bg-light');
+                // if (btn) btn.classList.add('active', 'bg-light');
 
                 roomTitle.innerText = title;
 
@@ -231,7 +231,7 @@
             min-height: 500px;
             display: flex;
             flex-direction: column;
-            border: 1px solid #e0e0e0;
+            /* border: 1px solid #e0e0e0; */
             border-radius: 8px;
             overflow: hidden;
             /* Importante para bordas arredondadas */
@@ -242,7 +242,7 @@
             width: 280px;
             display: flex;
             flex-direction: column;
-            background: white;
+            /* background: white; */
         }
 
         /* Responsividade Sidebar */
@@ -262,18 +262,18 @@
         }
 
         /* Utilitários */
-        .hover-bg-light:hover {
+        /* .hover-bg-light:hover {
             background-color: #333333;
-        }
+        } */
 
         .cursor-pointer {
             cursor: pointer;
         }
 
-        .active {
+        /* .active {
             background-color: #333333 !important;
             border-left: 3px solid #0d6efd;
-        }
+        } */
 
         .fs-10 {
             font-size: 10px;
