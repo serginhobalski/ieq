@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->timestamp('expires_at')->nullable(); // Aviso sai do ar automaticamente
-            $table->foreignId('author_id')->constrained('users');
-            $table->string('target_audience')->default('all'); // 'all', 'leaders', 'youth'
+            $table->date('expires_at')->nullable(); // Se null, é permanente
+            $table->enum('target_audience', ['all', 'leaders', 'youth', 'kids'])->default('all'); // Filtro de público
+            $table->foreignId('author_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

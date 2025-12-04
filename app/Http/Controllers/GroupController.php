@@ -16,7 +16,7 @@ class GroupController extends Controller
     {
         // Traz os grupos com o nome do líder (Eager Loading para performance)
         $groups = Group::with('leader', 'members')->get();
-        $members = User::all()->sortBy('name');
+        $members = User::orderBy('name', 'asc')->get();
         return view('groups.index', compact('groups', 'members'));
     }
 
@@ -28,7 +28,7 @@ class GroupController extends Controller
         // Busca apenas usuários aptos a liderar para o <select>
         // Ajuste conforme os 'roles' que você definiu no passo anterior
         // $leaders = User::whereIn('role', ['leader', 'pastor', 'admin'])->get();
-        $leaders = User::all();
+        $leaders = User::orderBy('name', 'asc')->get();
         
         return view('groups.create', compact('leaders'));
     }

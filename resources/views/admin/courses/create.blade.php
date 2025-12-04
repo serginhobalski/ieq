@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Criar Curso
+@endsection
+
 @section('content')
 <div class="container mt-4">
     <div class="card shadow-sm">
@@ -15,7 +19,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Categoria</label>
                         <select name="category" class="form-select">
-                            <option value="debq">Escola Bíblica (EBD)</option>
+                            <option value="debq">Escola Bíblica (DEBQ)</option>
                             <option value="trilho">Trilho de Crescimento</option>
                         </select>
                     </div>

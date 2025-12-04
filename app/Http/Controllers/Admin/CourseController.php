@@ -31,7 +31,7 @@ class CourseController extends Controller
         // dd($request->all());
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|in:ebd,trilho',
+            'category' => 'required|in:debq,trilho',
             'description' => 'nullable|string',
             'is_published' => 'nullable|string',
             'cover' => 'nullable|image|max:2048'
@@ -46,6 +46,8 @@ class CourseController extends Controller
             $data['cover_image'] = $request->file('cover')->store('courses', 'public');
         }
 
+        unset($data['cover']);
+        
         $course = Course::create($data);
 
         // Redireciona direto para a tela de adicionar aulas

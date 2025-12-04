@@ -130,7 +130,7 @@ class HomeController extends Controller
         $perPage = 9; // Defina quantos cursos por página você deseja
         
         $courses = Course::with('lessons')
-            ->where('category', 'debq')
+            ->where('category', 'trilho')
             ->orderBy('title', 'asc')
             ->paginate($perPage); // <-- MUDANÇA PRINCIPAL
 

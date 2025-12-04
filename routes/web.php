@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/devotionals/create', [App\Http\Controllers\DevotionalController::class, 'create'])->name('devotionals.create');
     Route::post('/devotionals', [App\Http\Controllers\DevotionalController::class, 'store'])->name('devotionals.store');
     Route::delete('/devotionals/{devotional}', [App\Http\Controllers\DevotionalController::class, 'destroy'])->name('devotionals.destroy');
+    Route::resource('notices', \App\Http\Controllers\NoticeController::class);
 });
 
 

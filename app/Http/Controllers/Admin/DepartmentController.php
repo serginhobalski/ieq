@@ -43,6 +43,20 @@ class DepartmentController extends Controller
 
     }
 
+    public function update(Request $request, Department $department)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|unique:departments,name,' . $department->id, // ✅ Corrigido
+            'description' => 'nullable|string',
+            'slug' => 'required|string',
+            'leader_id' => 'nullable|string',
+        ]);
+
+        $department->update($validated); // ✅ Usa a instância injetada
+        
+        return redirect()->back()->with('success', 'Departamento atualizado com sucesso!'); // ✅ Mensagem corrigida
+    }
+
     // Exibe a tela de gerenciar membros de um departamento específico
     public function members(Department $department)
     {

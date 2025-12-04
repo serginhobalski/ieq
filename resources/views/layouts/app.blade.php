@@ -56,6 +56,24 @@
 <body>
     <!-- =======--><!--    Main Content--><!--=======================================-->
     <main class="main" id="top">
+        @php
+            use App\Models\Notice;
+            $notices = Notice::where(function ($query) {
+                $query->where('target_audience', 'all')->orWhere(function ($query) {
+                    if (Auth::user()->is_leader) {
+                        $query->orWhere('target_audience', 'leaders');
+                    }
+                    if (Auth::user()->is_youth) {
+                        $query->orWhere('target_audience', 'youth');
+                    }
+                });
+            })
+                ->where(function ($query) {
+                    $query->whereNull('expires_at')->orWhere('expires_at', '>=', now());
+                })
+                ->orderBy('created_at', 'desc')
+                ->get();
+        @endphp
         <div class="container" data-layout="container">
             <script>
                 var isFluid = JSON.parse(localStorage.getItem('isFluid'));
@@ -142,71 +160,46 @@
                                                 <div class="col-auto">
                                                     <h6 class="card-header-title mb-0">Notificações</h6>
                                                 </div>
-                                                <div class="col-auto ps-0 ps-sm-3">
-                                                    <a class="card-link fw-normal" href="#">
-                                                        Marcar todas como lidas
-                                                    </a>
-                                                </div>
+                                                <div class="col-auto ps-0 ps-sm-3"></div>
                                             </div>
                                         </div>
                                         <div class="scrollbar-overlay" style="max-height:19rem">
                                             <div class="list-group list-group-flush fw-normal fs-10">
-                                                <div class="list-group-title border-bottom">NEW</div>
-                                                <div class="list-group-item">
-                                                    <a class="notification notification-flush notification-unread"
-                                                        href="#!">
-                                                        <div class="notification-avatar">
-                                                            <div class="avatar avatar-2xl me-3">
-                                                                <img class="rounded-circle"
-                                                                    src="{{asset('')}}assets/img/team/1-thumb.png" 
-                                                                    alt />
-                                                            </div>
-                                                        </div>
-                                                        <div class="notification-body">
-                                                            <p class="mb-1">
-                                                                <strong>Maria Exemplo</strong>
-                                                                respondeu ao seu comentário:
-                                                                "Hello! 😍"
-                                                            </p>
-                                                            <span class="notification-time">
-                                                                <span class="me-2" role="img"
-                                                                    aria-label="Emoji">💬
-                                                                </span>
-                                                                Agora
-                                                            </span>
-                                                        </div>
-                                                    </a>
+                                                <div class="list-group-title border-bottom">
+                                                    Últimos Avisos
                                                 </div>
-                                                <div class="list-group-item">
-                                                    <a class="notification notification-flush notification-unread"
-                                                        href="#!">
-                                                        <div class="notification-avatar">
-                                                            <div class="avatar avatar-2xl me-3">
-                                                                <div class="avatar-name rounded-circle">
-                                                                    <span>FQ</span>
+                                                @foreach ($notices as $notice)
+                                                    <div class="list-group-item">
+                                                        <a class="notification notification-flush notification-unread"
+                                                            href="#!">
+                                                            <div class="notification-avatar">
+                                                                <div class="avatar avatar-2xl me-3">
+                                                                    <img class="rounded-circle"
+                                                                        src="{{ asset('') }}" alt />
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="notification-body">
-                                                            <p class="mb-1">
-                                                                <strong>Fulaninho Qualquer</strong>
-                                                                resposdeu ao status:
-                                                                <strong>Fulaninha</strong>
-                                                            </p>
-                                                            <span class="notification-time">
-                                                                <span class="me-2 fab fa-gratipay text-danger">
+                                                            <div class="notification-body">
+                                                                <p class="mb-1">
+                                                                    <strong> {{ $notice->title }} </strong> <br>
+                                                                    {{ $notice->content }} <br>
+                                                                    <small>_por: {{ $notice->author->name }} </small>
+                                                                </p>
+                                                                <span class="notification-time">
+                                                                    {{ $notice->created_at->diffForHumans() }}
                                                                 </span>
-                                                                9hr
-                                                            </span>
-                                                        </div>
-                                                    </a>
-                                                </div>                                                
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="card-footer text-center border-top">
-                                            <a class="card-link d-block" href="#">
-                                                Ver tudo
-                                            </a>
+                                            @if (Auth::user()->role == 'pastor' || Auth::user()->is_admin == 1)
+                                                <a class="btn btn-primary d-block"
+                                                    href="{{ route('notices.index') }}">
+                                                    <i class="fas fa-plus-circle"></i> Gerenenciar Avisos
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -591,15 +584,15 @@
                                     <span class="text-warning text-center">{{ Auth::user()->name }}</span>
                                 </center>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('home')}}">
+                                <a class="dropdown-item" href="{{ route('home') }}">
                                     <i class="fas fa-house-user"></i> Meu Painel
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('profile')}}">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     <i class="fas fa-id-card-alt"></i> Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('logout')}}"
+                                <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -852,70 +845,60 @@
                                             <div class="col-auto">
                                                 <h6 class="card-header-title mb-0">Notificações</h6>
                                             </div>
-                                            <div class="col-auto ps-0 ps-sm-3">
-                                                <a class="card-link fw-normal" href="#">
-                                                    Marcar todas como vistas
-                                                </a>
-                                            </div>
+                                            <div class="col-auto ps-0 ps-sm-3"></div>
                                         </div>
                                     </div>
                                     <div class="scrollbar-overlay" style="max-height:19rem">
                                         <div class="list-group list-group-flush fw-normal fs-10">
-                                            <div class="list-group-title border-bottom">NEW</div>
-
-                                            <!-- Exemplo de notificação -->
-                                            <div class="list-group-item">
-                                                <a class="notification notification-flush notification-unread"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-2xl me-3">
-                                                            <img class="rounded-circle"
-                                                                src="{{asset('assets/img/team/1-thumb.png')}}" alt />
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1">
-                                                            <strong>Maria Fulaninha</strong>
-                                                            respondeu seu comentário:
-                                                            "Valeu!😍"
-                                                        </p>
-                                                        <span class="notification-time">
-                                                            <span class="me-2" role="img" aria-label="Emoji">💬
-                                                            </span>
-                                                            Agora
-                                                        </span>
-                                                    </div>
-                                                </a>
+                                            <div class="list-group-title border-bottom">
+                                                Últimos Avisos
                                             </div>
-                                            <div class="list-group-item">
-                                                <a class="notification notification-flush notification-unread"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-2xl me-3">
-                                                            <div class="avatar-name rounded-circle"><span>FQ</span>
+                                            @php
+                                                use App\Models\User;
+                                            @endphp
+                                            @if ($notices->count() > 0)
+                                                @foreach ($notices as $notice)
+                                                    @php
+                                                        $author = User::findOrFail($notice->author_id);
+                                                    @endphp
+                                                    <div class="list-group-item">
+                                                        <a class="notification notification-flush notification-unread"
+                                                            href="#!">
+                                                            <div class="notification-avatar">
+                                                                <div class="avatar avatar-2xl me-3">
+                                                                    <img src="{{ $author->avatar_url }}" class="rounded-circle border" width="16" height="16" 
+                                                                    style="object-fit: cover;" alt="{{ $author->name }}">
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                            <div class="notification-body">
+                                                                <p class="mb-1">
+                                                                    <strong> {{ $notice->title }} </strong> <br>
+                                                                    {{ $notice->content }} <br>
+                                                                    <small>_por: {{ $notice->author->name }} </small>
+                                                                </p>
+                                                                <span class="notification-time">
+                                                                    {{ $notice->created_at->diffForHumans() }}
+                                                                </span>
+                                                            </div>
+                                                        </a>
                                                     </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1">
-                                                            <strong>Fulano Qualquer</strong>
-                                                            reagiu ao status de
-                                                            <strong>Maria Fulaninha</strong>
-                                                        </p>
-                                                        <span class="notification-time">
-                                                            <span class="me-2 fab fa-gratipay text-danger"></span>
-                                                            9hr
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="list-group-title border-bottom">Anteriores</div>
-                                            
+                                                @endforeach
+                                            @else
+                                                <p class="p-3 text-primary text-center">
+                                                    Nenhum aviso no mural hoje.
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card-footer text-center border-top">
-                                        <a class="card-link d-block" href="#">
-                                            Ver todas
+                                        @if (Auth::user()->role == 'pastor' || Auth::user()->is_admin == 1)
+                                        <a class="btn btn-sm btn-outline-primary mb-2" href="{{ route('notices.create') }}">
+                                            <i class="fas fa-bullhorn"></i><i class="fas fa-plus-circle fa-sm"></i>
+                                            Criar Aviso
+                                        </a>
+                                        @endif
+                                        <a class="btn btn-sm btn-outline-primary" href="{{ route('notices.index') }}">
+                                            <i class="fas fa-external-link-alt"></i> Todos os Avisos
                                         </a>
                                     </div>
                                 </div>
@@ -940,11 +923,11 @@
                                         </span>
                                     </center>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{route('home')}}">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
                                         <i class="fas fa-id-card-alt"></i> Meu Painel
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{route('profile')}}">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
                                         <i class="fas fa-id-card-alt"></i> Meu Perfil
                                     </a>
                                     <div class="dropdown-divider"></div>
@@ -1000,7 +983,35 @@
                         navbarTopCombo.remove(navbarTopCombo);
                     }
                 </script>
-                <div class="row g-3 mb-3">
+                <div class="row g-3 mb-3 p-1">
+
+                    {{-- <div class="card mt-4 d-flex flex-row justify-content-center align-items-center gap-2 p-3">
+                        <div class="d-grid">
+                            <a href="{{ route('events') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-calendar-alt"></i> Eventos
+                            </a>
+                            <a href="{{ route('groups.index') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-share-alt"></i> Grupos
+                            </a>
+                        </div>
+                        <div class="d-grid">
+                            <a href="{{ route('bible.index') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-bible"></i> Bíblia
+                            </a>
+                            <a href="{{ route('chat.index') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-comment"></i> Chat
+                            </a>
+                        </div>
+                        <div class="d-grid">
+                            <a href="{{ route('prayers.index') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-pray"></i> Oração
+                            </a>
+                            <a href="{{ route('devotionals.index') }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-book-reader"></i> <small>Devocionais</small>
+                            </a>
+                        </div>
+
+                    </div> --}}
 
                     @yield('content')
 
@@ -1034,7 +1045,7 @@
                                         class="btn-close position-absolute top-0 end-0 mt-2 me-2"
                                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                             </div>
-                            
+
                             <div class="modal-body py-4 px-5">
                                 <form>
                                     <div class="mb-3"><label class="form-label" for="modal-auth-name">Nome
@@ -1077,6 +1088,7 @@
     <script src="{{ asset('') }}vendors/anchorjs/anchor.min.js"></script>
     <script src="{{ asset('') }}vendors/is/is.min.js"></script>
     <script src="{{ asset('') }}vendors/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('') }}vendors/typed.js/typed.umd.js"></script>
     <script src="{{ asset('') }}vendors/prism/prism.js"></script>
     <script src="{{ asset('') }}vendors/echarts/echarts.min.js"></script>
     <script src="{{ asset('') }}vendors/fullcalendar/index.global.min.js"></script>

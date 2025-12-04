@@ -46,9 +46,8 @@
                                 <label class="form-label">Função na Igreja</label>
                                 <select name="role" class="form-select">
                                     <option value="member">Membro Comum</option>
-                                    <option value="leader">Líder de Grupo</option>
-                                    <option value="leader">Presidente de Departamento</option>
-                                    <option value="pastor">Pastor</option>
+                                    <option value="leader">Líder de Grupo ou Área</option>
+                                    <option value="pastor">Pastor(a)</option>
                                     <option value="visitor">Visitante</option>
                                 </select>
                                 <div class="form-text">Isso define a hierarquia para GCs e Departamentos.</div>

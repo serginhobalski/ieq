@@ -84,37 +84,41 @@
                                 </span>
                             </div>
 
-                            <!-- Informações do Líder -->
-                            <div class="d-flex align-items-center mb-4">
-                                <img src="{{ $department->leader->avatar_url ?? 'https://ui-avatars.com/api/?name=L' }}"
-                                    class="rounded-circle me-2" width="40" height="40" alt="Líder">
-                                <div>
-                                    <small class="text-muted d-block">Líder</small>
-                                    <span class="fw-bold">{{ $department->leader->name ?? 'Sem líder' }}</span>
+                            <div class="row">
+                                <!-- Informações do Líder -->
+                                <div class="d-flex align-items-center col-12 mb-4">
+                                    <img src="{{ $department->leader->avatar_url ?? 'https://ui-avatars.com/api/?name=L' }}"
+                                        class="rounded-circle me-2" width="40" height="40" alt="Líder">
+                                    <div>
+                                        <small class="text-muted d-block">Líder</small>
+                                        <span class="fw-bold">{{ $department->leader->name ?? 'Sem líder' }}</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Botões de Ação -->
-                            <div class="d-flex gap-2">
-                                <!-- Botão Modal Adicionar Membros -->
-                                <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#addMemberModal-{{ $department->id }}">
-                                    <i class="fas fa-user-plus"></i> Add Membro
-                                </button>
-
-                                <a href="{{ route('admin.departments.edit', $department) }}"
-                                    class="btn btn-outline-info btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-
-                                <form action="{{ route('admin.departments.destroy', $department) }}" method="POST"
-                                    onsubmit="return confirm('Excluir este departamento?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i>
+                                <!-- Botões de Ação -->
+                                <div class="col-4 d-grid">
+                                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#addMemberModal-{{ $department->id }}">
+                                        <i class="fas fa-user-plus"></i> Add
                                     </button>
-                                </form>
+                                </div>
+                                <div class="col-4 d-grid">
+                                    <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#editDepartmentModal-{{ $department->id }}">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                </div>
+                                <div class="col-4 d-grid">
+                                    <form action="{{ route('admin.departments.destroy', $department) }}" method="POST"
+                                        onsubmit="return confirm('Excluir este departamento?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i> Excluir
+                                        </button>
+                                    </form>
+                                </div>
+
                             </div>
                             <hr>
                             <!-- Lista de membros do departamento -->
@@ -122,7 +126,16 @@
                             <ol>
                                 @foreach ($department->members as $member)
                                     <li>
-                                        {{ $member->name }} ({{ $member->email }})
+                                        {{ $member->name }}
+                                        @if ($member->role == 'member')
+                                            <span class="badge bg-info text-dark">Membro</span>
+                                        @elseif ($member->role == 'leader')
+                                            <span class="badge bg-warning">Líder</span>
+                                        @elseif ($member->role == 'pastor')
+                                            <span class="badge bg-success">Pastor(a)</span>
+                                        @else
+                                            <span class="badge bg-secondary">Visitante</span>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ol>
@@ -154,6 +167,59 @@
                                             <small class="text-muted">
                                                 Certifique-se de não selecionar alguém que já faz parte da equipe.
                                             </small>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIM DA MODAL -->
+
+                    <!-- MODAL DE EDITAR DEPARTAMENTO -->
+                    <div class="modal fade" id="editDepartmentModal-{{ $department->id }}" tabindex="-1"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="{{ route('admin.departments.update', $department->id) }}" method="POST">
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Atualizar {{ $department->name }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nome do Departamento</label>
+                                            <input type="text" name="name" id="" class="form-control"
+                                                value="{{ $department->name }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Descrição do Departamento</label>
+                                            <input type="text" name="description" id="" class="form-control"
+                                                value="{{ $department->description }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Sigla do Departamento</label>
+                                            <input type="text" name="slug" id="" class="form-control"
+                                                value="{{ $department->slug }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Líder do Departamento</label>
+                                            <select name="leader_id" class="form-select" required>
+                                                <option value="">--Selecione--</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}"
+                                                        {{ $user->id == $department->leader_id ? 'selected' : '' }}>
+                                                        {{ $user->name }}                                                        
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

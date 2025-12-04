@@ -37,7 +37,7 @@
                                 <select name="role" class="form-select">
                                     <option value="member" {{ ($user->role ?? '') == 'member' ? 'selected' : '' }}>Membro Comum</option>
                                     <option value="leader" {{ ($user->role ?? '') == 'leader' ? 'selected' : '' }}>Líder de Grupo/Departamento</option>
-                                    <option value="pastor" {{ ($user->role ?? '') == 'pastor' ? 'selected' : '' }}>Pastor</option>
+                                    <option value="pastor" {{ ($user->role ?? '') == 'pastor' ? 'selected' : '' }}>Pastor(a)</option>
                                     <option value="visitor" {{ ($user->role ?? '') == 'visitor' ? 'selected' : '' }}>Visitante</option>
                                 </select>
                                 <div class="form-text">Isso define a hierarquia para GCs e Departamentos.</div>

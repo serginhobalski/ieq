@@ -49,7 +49,15 @@
                             <div class="text-muted small">{{ $user->email }}</div>
                         </td>
                         <td>
-                            <span class="badge bg-info text-dark">{{ ucfirst($user->role ?? 'Membro') }}</span>
+                            @if( $user->role == 'member' )
+                                <span class="badge bg-info text-dark">Membro</span>                                
+                            @elseif ( $user->role == 'leader' )
+                                <span class="badge bg-warning">Líder</span>
+                            @elseif ( $user->role == 'pastor' )
+                                <span class="badge bg-success">Pastor(a)</span>
+                            @else
+                                <span class="badge bg-secondary">Visitante</span>                                
+                            @endif
                         </td>
                         <td>
                             @if($user->is_admin)

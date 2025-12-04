@@ -11,22 +11,6 @@
 
 
 @section('content')
-    <div class="card mt-4">
-        <center class="pt-2 pb-2">
-            <a href="{{route('events')}}" class="btn btn-primary mt-2">
-                <i class="fas fa-calendar-alt"></i> Eventos
-            </a>
-            <a href="{{route('groups.index')}}" class="btn btn-primary mt-2">
-                <i class="fas fa-share"></i> Grupos
-            </a>
-            <a href="{{route('bible.index')}}" class="btn btn-primary mt-2">
-                <i class="fas fa-bible"></i> Bíblia
-            </a>
-            <a href="{{route('chat.index')}}" class="btn btn-primary mt-2">
-                <i class="fas fa-comment"></i> Chat
-            </a>
-        </center>
-    </div>
     
     <div class="position-relative" data-bs-theme="light">
         <div class="bg-holder rounded-2" style="background-image:url({{ asset('') }}assets/video/beach.jpg);">
