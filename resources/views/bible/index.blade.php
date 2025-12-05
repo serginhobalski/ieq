@@ -70,178 +70,467 @@
         </div>
     </div>
 
+    <script>
+        // Lista OTIMIZADA para a versão Almeida
+        // A chave 'query' é o nome exato que a API espera em português (sem acentos)
+        const bibleData = [
+            // VELHO TESTAMENTO
+            {
+                pt: "Gênesis",
+                query: "Genesis",
+                ch: 50
+            },
+            {
+                pt: "Êxodo",
+                query: "Exodo",
+                ch: 40
+            },
+            {
+                pt: "Levítico",
+                query: "Levitico",
+                ch: 27
+            },
+            {
+                pt: "Números",
+                query: "Numeros",
+                ch: 36
+            },
+            {
+                pt: "Deuteronômio",
+                query: "Deuteronomio",
+                ch: 34
+            },
+            {
+                pt: "Josué",
+                query: "Josue",
+                ch: 24
+            },
+            {
+                pt: "Juízes",
+                query: "Juizes",
+                ch: 21
+            },
+            {
+                pt: "Rute",
+                query: "Rute",
+                ch: 4
+            },
+            {
+                pt: "1 Samuel",
+                query: "1 Samuel",
+                ch: 31
+            },
+            {
+                pt: "2 Samuel",
+                query: "2 Samuel",
+                ch: 24
+            },
+            {
+                pt: "1 Reis",
+                query: "1 Reis",
+                ch: 22
+            },
+            {
+                pt: "2 Reis",
+                query: "2 Reis",
+                ch: 25
+            },
+            {
+                pt: "1 Crônicas",
+                query: "1 Cronicas",
+                ch: 29
+            },
+            {
+                pt: "2 Crônicas",
+                query: "2 Cronicas",
+                ch: 36
+            },
+            {
+                pt: "Esdras",
+                query: "Esdras",
+                ch: 10
+            },
+            {
+                pt: "Neemias",
+                query: "Neemias",
+                ch: 13
+            },
+            {
+                pt: "Ester",
+                query: "Ester",
+                ch: 10
+            },
+            {
+                pt: "Jó",
+                query: "Jo",
+                ch: 42
+            },
+            {
+                pt: "Salmos",
+                query: "Salmos",
+                ch: 150
+            },
+            {
+                pt: "Provérbios",
+                query: "Proverbios",
+                ch: 31
+            },
+            {
+                pt: "Eclesiastes",
+                query: "Eclesiastes",
+                ch: 12
+            },
+            {
+                pt: "Cânticos",
+                query: "Cantares",
+                ch: 8
+            }, // Almeida usa 'Cantares'
+            {
+                pt: "Isaías",
+                query: "Isaias",
+                ch: 66
+            },
+            {
+                pt: "Jeremias",
+                query: "Jeremias",
+                ch: 52
+            },
+            {
+                pt: "Lamentações",
+                query: "Lamentacoes",
+                ch: 5
+            },
+            {
+                pt: "Ezequiel",
+                query: "Ezequiel",
+                ch: 48
+            },
+            {
+                pt: "Daniel",
+                query: "Daniel",
+                ch: 12
+            },
+            {
+                pt: "Oseias",
+                query: "Oseias",
+                ch: 14
+            },
+            {
+                pt: "Joel",
+                query: "Joel",
+                ch: 3
+            },
+            {
+                pt: "Amós",
+                query: "Amos",
+                ch: 9
+            },
+            {
+                pt: "Obadias",
+                query: "Obadias",
+                ch: 1
+            },
+            {
+                pt: "Jonas",
+                query: "Jonas",
+                ch: 4
+            },
+            {
+                pt: "Miqueias",
+                query: "Miqueias",
+                ch: 7
+            },
+            {
+                pt: "Naum",
+                query: "Naum",
+                ch: 3
+            },
+            {
+                pt: "Habacuque",
+                query: "Habacuque",
+                ch: 3
+            },
+            {
+                pt: "Sofonias",
+                query: "Sofonias",
+                ch: 3
+            },
+            {
+                pt: "Ageu",
+                query: "Ageu",
+                ch: 2
+            },
+            {
+                pt: "Zacarias",
+                query: "Zacarias",
+                ch: 14
+            },
+            {
+                pt: "Malaquias",
+                query: "Malaquias",
+                ch: 4
+            },
 
-    <!--<script>
-        -- >
+            // NOVO TESTAMENTO
+            {
+                pt: "Mateus",
+                query: "Mateus",
+                ch: 28
+            },
+            {
+                pt: "Marcos",
+                query: "Marcos",
+                ch: 16
+            },
+            {
+                pt: "Lucas",
+                query: "Lucas",
+                ch: 24
+            },
+            {
+                pt: "João",
+                query: "Joao",
+                ch: 21
+            },
+            {
+                pt: "Atos",
+                query: "Atos",
+                ch: 28
+            },
+            {
+                pt: "Romanos",
+                query: "Romanos",
+                ch: 16
+            },
+            {
+                pt: "1 Coríntios",
+                query: "1 Corintios",
+                ch: 16
+            },
+            {
+                pt: "2 Coríntios",
+                query: "2 Corintios",
+                ch: 13
+            },
+            {
+                pt: "Gálatas",
+                query: "Galatas",
+                ch: 6
+            },
+            {
+                pt: "Efésios",
+                query: "Efesios",
+                ch: 6
+            },
+            {
+                pt: "Filipenses",
+                query: "Filipenses",
+                ch: 4
+            },
+            {
+                pt: "Colossenses",
+                query: "Colossenses",
+                ch: 4
+            },
+            {
+                pt: "1 Tessalonicenses",
+                query: "1 Tessalonicenses",
+                ch: 5
+            },
+            {
+                pt: "2 Tessalonicenses",
+                query: "2 Tessalonicenses",
+                ch: 3
+            },
+            {
+                pt: "1 Timóteo",
+                query: "1 Timoteo",
+                ch: 6
+            },
+            {
+                pt: "2 Timóteo",
+                query: "2 Timoteo",
+                ch: 4
+            },
+            {
+                pt: "Tito",
+                query: "Tito",
+                ch: 3
+            },
+            {
+                pt: "Filemom",
+                query: "Filemom",
+                ch: 1
+            },
+            {
+                pt: "Hebreus",
+                query: "Hebreus",
+                ch: 13
+            },
+            {
+                pt: "Tiago",
+                query: "Tiago",
+                ch: 5
+            },
+            {
+                pt: "1 Pedro",
+                query: "1 Pedro",
+                ch: 5
+            },
+            {
+                pt: "2 Pedro",
+                query: "2 Pedro",
+                ch: 3
+            },
+            {
+                pt: "1 João",
+                query: "1 Joao",
+                ch: 5
+            },
+            {
+                pt: "2 João",
+                query: "2 Joao",
+                ch: 1
+            },
+            {
+                pt: "3 João",
+                query: "3 Joao",
+                ch: 1
+            },
+            {
+                pt: "Judas",
+                query: "Judas",
+                ch: 1
+            },
+            {
+                pt: "Apocalipse",
+                query: "Apocalipse",
+                ch: 22
+            }
+        ];
 
-        <
-        !--
-    </script>-->
-    <script type="module">
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("🚀 [Chat] Iniciando script...");
+        let currentBookIndex = -1;
+        let currentChapter = 1;
 
-            // 1. Definições
-            const currentUserId = {{ auth()->id() }};
-            let currentRoom = 'geral';
-            let echoChannel = null;
+        document.addEventListener('DOMContentLoaded', () => {
+            const bookSelect = document.getElementById('bookSelect');
+            const chapterGrid = document.getElementById('chapterGrid');
 
-            const messagesArea = document.getElementById('messagesArea');
-            const messageInput = document.getElementById('messageInput');
-            const btnSend = document.getElementById('btnSend');
-            const roomTitle = document.getElementById('roomTitle');
+            // Popular Select de Livros
+            bibleData.forEach((book, index) => {
+                let option = document.createElement('option');
+                option.value = index;
+                option.textContent = book.pt;
+                bookSelect.appendChild(option);
+            });
 
-            // Proteção contra elementos faltantes
-            if (!messagesArea || !messageInput || !btnSend) return console.error(
-            "Elementos de UI não encontrados.");
+            // Evento ao trocar livro
+            bookSelect.addEventListener('change', (e) => {
+                currentBookIndex = parseInt(e.target.value);
+                const book = bibleData[currentBookIndex];
 
-            const historyRoute = '{{ route('chat.history') }}';
-            const sendRoute = '{{ route('chat.send') }}';
+                // Gerar botões de capítulos
+                chapterGrid.innerHTML = '';
+                for (let i = 1; i <= book.ch; i++) {
+                    let btn = document.createElement('button');
+                    btn.className = `btn btn-sm btn-outline-secondary chapter-btn`;
+                    btn.style.width = '40px';
+                    btn.innerText = i;
+                    btn.onclick = () => loadChapter(i);
+                    chapterGrid.appendChild(btn);
+                }
+            });
+        });
 
-            // 2. Renderização
-            function appendMessage(data) {
-                const isMy = data.user_id === currentUserId;
+        async function loadChapter(chapter) {
+            if (currentBookIndex === -1) return;
 
-                const html = `
-                <div class="d-flex mb-3 ${isMy ? 'justify-content-end' : 'justify-content-start'}">
-                    ${!isMy ? `<img src="${data.user_avatar}" class="rounded-circle me-2 border" width="35" height="35" style="align-self: flex-end; object-fit: cover;">` : ''}
-                    
-                    <div class="${isMy ? 'text-end' : ''}" style="max-width: 75%;">
-                        <div class="p-2 px-3 rounded-3 ${isMy ? 'bg-primary text-white' : 'bg-white border text-dark shadow-sm'}">
-                            ${!isMy ? `<div class="fw-bold small mb-1" style="font-size: 0.8rem;">${data.user_name}</div>` : ''}
-                            <div style="word-break: break-word; line-height: 1.4;">${data.content}</div>
-                        </div>
-                        <small class="text-muted" style="font-size: 0.65rem; margin-top: 2px; display: block;">${data.created_at}</small>
-                    </div>
+            currentChapter = chapter;
+            const book = bibleData[currentBookIndex];
+
+            // UI Updates
+            document.getElementById('loadingSpinner').classList.remove('d-none');
+            document.getElementById('bibleText').classList.add('d-none');
+            document.getElementById('footerNav').classList.add('d-none');
+            document.getElementById('readingTitle').innerText = `${book.pt} ${chapter}`;
+
+            // Atualizar botões ativos
+            document.querySelectorAll('.chapter-btn').forEach(btn => {
+                btn.classList.remove('active', 'btn-primary');
+                btn.classList.add('btn-outline-secondary');
+                if (parseInt(btn.innerText) === chapter) {
+                    btn.classList.add('active', 'btn-primary');
+                    btn.classList.remove('btn-outline-secondary');
+                }
+            });
+
+            try {
+                // MUDANÇA: Usamos book.query (nome em PT sem acento)
+                // EncodeURIComponent garante que espaços virem %20 corretamente
+                const bookName = encodeURIComponent(book.query);
+                const url = `https://bible-api.com/${bookName}+${chapter}?translation=almeida`;
+
+                console.log("URL Gerada:", url);
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Erro API: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                let htmlContent = '';
+                if (data.verses && data.verses.length > 0) {
+                    data.verses.forEach(verse => {
+                        htmlContent += `
+                        <p class="mb-2">
+                            <sup class="text-primary fw-bold me-1">${verse.verse}</sup>
+                            ${verse.text}
+                        </p>`;
+                    });
+                } else {
+                    htmlContent = '<p class="text-muted text-center py-5">Texto não encontrado.</p>';
+                }
+
+                document.getElementById('bibleText').innerHTML = htmlContent;
+
+                // Show UI
+                document.getElementById('loadingSpinner').classList.add('d-none');
+                document.getElementById('bibleText').classList.remove('d-none');
+                document.getElementById('footerNav').classList.remove('d-none');
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('loadingSpinner').classList.add('d-none');
+
+                document.getElementById('bibleText').innerHTML = `
+                <div class="alert alert-warning text-center mt-5">
+                    <i class="bi bi-exclamation-triangle display-4"></i><br><br>
+                    <strong>Não foi possível carregar ${book.pt}.</strong><br>
+                    <small>Tente selecionar outro capítulo ou verifique sua internet.</small>
+                    <br><small class="text-muted">Erro técnico: ${error.message}</small>
                 </div>
             `;
-
-                messagesArea.insertAdjacentHTML('beforeend', html);
-                scrollToBottom();
+                document.getElementById('bibleText').classList.remove('d-none');
             }
+        }
 
-            function scrollToBottom() {
-                messagesArea.scrollTop = messagesArea.scrollHeight;
+        function nextChapter() {
+            if (currentBookIndex === -1) return;
+            const book = bibleData[currentBookIndex];
+            if (currentChapter < book.ch) {
+                loadChapter(currentChapter + 1);
+            } else {
+                alert('Fim do livro. Selecione o próximo livro no menu.');
             }
+        }
 
-            function clearMessages() {
-                messagesArea.innerHTML = '';
+        function prevChapter() {
+            if (currentChapter > 1) {
+                loadChapter(currentChapter - 1);
             }
-
-            // 3. Salas
-            window.switchRoom = function(roomKey, title) {
-                if (currentRoom === roomKey && echoChannel) return;
-
-                document.querySelectorAll('.chat-contact').forEach(el => el.classList.remove('active',
-                    'bg-light'));
-                const btn = document.getElementById(`btn-${roomKey}`);
-                if (btn) btn.classList.add('active', 'bg-light');
-
-                if (roomTitle) roomTitle.innerText = title;
-
-                clearMessages();
-                if (echoChannel && window.Echo) window.Echo.leave(`chat.${currentRoom}`);
-
-                currentRoom = roomKey;
-                messagesArea.innerHTML =
-                    '<div class="text-center p-3 text-muted"><div class="spinner-border spinner-border-sm"></div> Carregando...</div>';
-
-                // Reinicia verificação de conexão
-                waitForAxios(fetchMessagesAndConnect);
-            };
-
-            // 4. Lógica de Rede (CORRIGIDA)
-            function waitForAxios(callback, attempts = 0) {
-                if (window.axios && window.Echo) {
-                    console.log("✅ [Chat] Bibliotecas prontas.");
-                    // Habilita o botão apenas quando pronto
-                    btnSend.disabled = false;
-                    messageInput.disabled = false;
-                    callback();
-                } else {
-                    if (attempts > 30) { // 15 segundos
-                        console.error("❌ [Chat] Falha: Axios não carregou.");
-                        messagesArea.innerHTML =
-                            '<div class="alert alert-danger m-3">Erro: Bibliotecas não carregadas. Verifique o console.</div>';
-                        return;
-                    }
-                    if (attempts === 0) {
-                        console.log("⏳ [Chat] Aguardando carregamento...");
-                        // Desabilita para evitar clique antes da hora
-                        btnSend.disabled = true;
-                        messageInput.disabled = true;
-                    }
-                    setTimeout(() => waitForAxios(callback, attempts + 1), 500);
-                }
-            }
-
-            function fetchMessagesAndConnect() {
-                window.axios.get(historyRoute, {
-                        params: {
-                            room: currentRoom
-                        }
-                    })
-                    .then(res => {
-                        clearMessages();
-                        if (res.data.length === 0) {
-                            messagesArea.innerHTML =
-                                '<div class="text-center p-4 text-muted small">Nenhuma mensagem aqui ainda.</div>';
-                        } else {
-                            res.data.forEach(msg => appendMessage(msg));
-                        }
-
-                        echoChannel = window.Echo.channel(`chat.${currentRoom}`)
-                            .listen('MessageSent', (e) => {
-                                if (messagesArea.innerText.includes('Nenhuma mensagem')) clearMessages();
-                                appendMessage(e);
-                            });
-                    })
-                    .catch(err => {
-                        console.error("Erro histórico:", err);
-                        messagesArea.innerHTML =
-                            '<div class="text-center text-danger p-3">Falha de conexão.</div>';
-                    });
-            }
-
-            function sendMessage() {
-                // PROTEÇÃO EXTRA AQUI
-                if (!window.axios) {
-                    alert("Erro: O sistema ainda está carregando. Aguarde um momento.");
-                    return;
-                }
-
-                const txt = messageInput.value.trim();
-                if (!txt) return;
-
-                messageInput.value = '';
-                messageInput.focus();
-
-                window.axios.post(sendRoute, {
-                        content: txt,
-                        room: currentRoom
-                    })
-                    .catch(err => {
-                        console.error("Erro envio:", err);
-                        messageInput.value = txt;
-                        alert('Não foi possível enviar.');
-                    });
-            }
-
-            // 5. Inicialização
-            if (btnSend) btnSend.onclick = (e) => {
-                e.preventDefault();
-                sendMessage();
-            };
-            if (messageInput) messageInput.onkeypress = (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            };
-
-            // Inicia
-            waitForAxios(fetchMessagesAndConnect);
-        });
+        }
     </script>
 
     <style>
